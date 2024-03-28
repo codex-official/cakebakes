@@ -9,6 +9,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebas
       child,
     } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
 
+    import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL, uploadBytes } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-storage.js";
+
     const firebaseConfig = {
       apiKey: "AIzaSyBTMQCoptdmqXnPVIYQBThVbUEpgVIc1TA",
       databaseURL: "https://cakebakes-ef849-default-rtdb.firebaseio.com/",
@@ -26,12 +28,15 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebas
 
     const products = ref(database, "products");
 
+
+
     function display() {
         onValue(products, function (snapshot) {
           let chatsArray = Object.values(snapshot.val());
           for (let i=0;i<chatsArray.length;i++) {
             var list = Object.values(chatsArray[i])
-            console.log(list)
+            var link = 'https://firebasestorage.googleapis.com/v0/b/cakebakes-ef849.appspot.com/o/1711620494204-product-1.jpg?alt=media&token=d25f44ab-f4ba-42c3-9cfa-c9c1ea121768'
+            console.log(list[0])
             
               
                 const parent= document.getElementById('parent');
@@ -48,7 +53,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebas
                 const div3 = document.createElement("div");
                 div3.appendChild(document.createTextNode(''));
                 div3.className = "product__item__pic set-bg"
-                div3.style.backgroundImage = "url(img/shop/product-1.jpg)";
+                var image = list[0];
+                div3.style.backgroundImage = 'url('+image+')';
                 div2.appendChild(div3);
 
                 const div4 = document.createElement("div");
@@ -57,7 +63,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebas
                 div3.appendChild(div4);
 
                 const span= document.createElement("span");
-                span.appendChild(document.createTextNode(list[0]));
+                span.appendChild(document.createTextNode(list[1]));
                 div4.appendChild(span);
 
                 const div5 = document.createElement("div");
@@ -66,14 +72,14 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebas
                 div2.appendChild(div5);
 
                 const h6 = document.createElement("h6");
-                h6.appendChild(document.createTextNode(list[1]));
+                h6.appendChild(document.createTextNode(list[2]));
                 div5.appendChild(h6);
                 h6.style.color = "#111111";
                 h6.style.fontWeight = "600";
                 h6.style.textTransform = "uppercase";
 
                 const div6 = document.createElement("div");
-                div6.appendChild(document.createTextNode(list[2]));
+                div6.appendChild(document.createTextNode(list[3]));
                 div6.className = "product__item__price"
                 div5.appendChild(div6);
 

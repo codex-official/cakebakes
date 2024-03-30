@@ -229,7 +229,7 @@
                 <h6><a href="#">Dozen Cupcakes</a></h6>
                 <div class="product__item__price">$32.00</div>
                 <div class="cart_add">
-                  <a href="#">Add to cart</a>
+                  <a href="#" id="one" onclick="addtoCart(this)">Add to cart</a>
                 </div>
               </div>
             </div>
@@ -248,7 +248,7 @@
                 <h6><a href="#">Cookies and Cream</a></h6>
                 <div class="product__item__price">$30.00</div>
                 <div class="cart_add">
-                  <a href="#">Add to cart</a>
+                  <a href="#" id="two" onclick="addtoCart(this)">Add to cart</a>
                 </div>
               </div>
             </div>
@@ -560,6 +560,31 @@
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/jquery.nicescroll.min.js"></script>
     <script src="js/main.js"></script>
+    <!-- <script src="js/shoppingcart.js"></script> -->
   </body>
   <script defer src="js/adminpanel.js" type="module"></script>
+  <script>
+    var itemCount = 0;
+    localStorage.setItem("itemCount", 0);
+    function addtoCart(x) {
+      itemCount += 1;
+      let currentId = document.getElementById(x.id);
+      console.log(itemCount);
+      let itemName =
+        currentId.parentElement.previousElementSibling.previousElementSibling
+          .firstElementChild.innerHTML;
+      let itemPrice = currentId.parentElement.previousElementSibling.innerHTML;
+      let imgdiv =
+        currentId.parentElement.parentElement.previousElementSibling.style
+          .backgroundImage;
+      localStorage.setItem("cartID" + itemCount, [itemName, itemPrice, imgdiv]);
+      // const extractQuote = localStorage
+      //   .getItem("cartID" + itemCount)
+      //   .split(",")[2]
+      //   .match(/(?:"[^"]*"|^[^"]*$)/)[0]
+      //   .replace(/"/g, "");
+      // console.log(extractQuote);
+      localStorage.setItem("itemCount", itemCount);
+    }
+  </script>
 </html>

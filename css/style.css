@@ -27,6 +27,12 @@
 /*----------------------------------------*/
 /* Template default CSS
 /*----------------------------------------*/
+
+
+/* Changes that I have mad in Css:
+
+1) Changed img max-width property from 100% to 90px */
+
 html,
 body {
   height: 100%;
@@ -80,7 +86,7 @@ p {
 }
 
 img {
-  max-width: 100%;
+  max-width: 90px;
 }
 
 #logo123 {

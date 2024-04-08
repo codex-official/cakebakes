@@ -120,7 +120,7 @@
                     <a href="#"><img src="img/icon/heart.png" alt="" /></a>
                   </div>
                   <div class="header__top__right__cart">
-                    <a href="#"
+                    <a href="./shoping-cart.html"
                       ><img src="img/icon/cart.png" alt="" />
                       <span id="cartCount">0</span></a
                     >
@@ -268,7 +268,9 @@
                 <h6><a href="#">Gluten Free Mini Dozen</a></h6>
                 <div class="product__item__price">$31.00</div>
                 <div class="cart_add">
-                  <a href="#">Add to cart</a>
+                  <a href="#" id="three" onclick="addtoCart(this)"
+                    >Add to cart</a
+                  >
                 </div>
               </div>
             </div>
@@ -287,7 +289,9 @@
                 <h6><a href="#">Cookie Dough</a></h6>
                 <div class="product__item__price">$25.00</div>
                 <div class="cart_add">
-                  <a href="#">Add to cart</a>
+                  <a href="#" id="four" onclick="addtoCart(this)"
+                    >Add to cart</a
+                  >
                 </div>
               </div>
             </div>
@@ -472,7 +476,7 @@
         <div class="row">
           <div class="col-lg-4 col-md-6 col-sm-6">
             <div class="footer__widget">
-              <h6>WORKING HOURS</h6>
+              <h5>WORKING HOURS</h5>
               <ul>
                 <li>Monday - Friday: 08:00 am – 08:30 pm</li>
                 <li>Saturday: 10:00 am – 16:30 pm</li>
@@ -499,7 +503,7 @@
           </div>
           <div class="col-lg-4 col-md-6 col-sm-6">
             <div class="footer__newslatter">
-              <h6>Subscribe</h6>
+              <h5>Subscribe</h5>
               <p>Get latest updates and offers.</p>
               <form action="#">
                 <input type="text" placeholder="Email" />
@@ -564,15 +568,11 @@
 
     <!-- <script src="js/shoppingcart.js"></script> -->
   </body>
-  <script defer src="js/adminpanel.js" type="module"></script>
-
-  <script>
-    var itemCount = 0;
-    // localStorage.setItem("itemCount", 0);
+  <script src="js/adminpanel.js" type="module"></script>
+  <script defer src="js/search.js"></script>
+  <script defer>
     function addtoCart(x) {
-      itemCount += 1;
       let currentId = document.getElementById(x.id);
-      // console.log(itemCount);
       let itemName =
         currentId.parentElement.previousElementSibling.previousElementSibling
           .firstElementChild.innerHTML;
@@ -580,18 +580,17 @@
       let imgdiv =
         currentId.parentElement.parentElement.previousElementSibling.style
           .backgroundImage;
-      localStorage.setItem("cartID" + itemCount, [itemName, itemPrice, imgdiv]);
-      // const extractQuote = localStorage
-      //   .getItem("cartID" + itemCount)
-      //   .split(",")[2]
-      //   .match(/(?:"[^"]*"|^[^"]*$)/)[0]
-      //   .replace(/"/g, "");
-      // console.log(extractQuote);
-      localStorage.setItem("itemCount", itemCount);
-      var cartCount = document.getElementById("cartCount").innerText;
-      cartCount += 1;
-      document.getElementById("cartCount").innerText = cartCount;
+
+      let productCur = {
+        name: itemName,
+        price: itemPrice,
+        img: imgdiv,
+        qty: 1,
+      };
+      let productList = JSON.parse(localStorage.getItem("productList")) || [];
+      productList.push(productCur);
+      localStorage.setItem("productList", JSON.stringify(productList));
+      console.log(productList[0].name);
     }
   </script>
-  <script defer src="js/search.js"></script>
 </html>

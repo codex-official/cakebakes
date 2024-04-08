@@ -231,12 +231,3 @@ parent.appendChild(div1);
 
 // const parent= document.getElementById('parent');
 
-productList = JSON.parse(localStorage.getItem("productList"))
-let cartCount = 0;
-function updateCartCount() {
-  cartCount = productList.map((x)=>x.qty).reduce((x,y)=>x+y,0)
-  document.getElementsByClassName('header__top__right__cart')[0].firstElementChild.lastElementChild.innerHTML = cartCount
-  console.log(cartCount)
-}
-updateCartCount();
-

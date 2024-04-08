@@ -1,7 +1,11 @@
 
+let productList = JSON.parse(localStorage.getItem("productList"))
+
+
+
 
 function displayCart () {
-  let productList = JSON.parse(localStorage.getItem("productList"))
+  
   for (let i=0;i<productList.length;i++) {
     const parent= document.getElementById('parent2');
     const tr = document.createElement("tr");
@@ -70,11 +74,18 @@ function displayCart () {
 
         if(search.qty!=0){
           search.qty -=1 
-          console.log(search);
           qtyInput.value = search.qty; 
-        productList = productList.filter((x)=>x.name!==name);
-        productList.push(search);
-        localStorage.setItem("productList", JSON.stringify(productList))
+          productList = productList.filter((x)=>x.name!==name);
+          productList.push(search);
+          localStorage.setItem("productList", JSON.stringify(productList))
+          update();
+          updateCartCount();
+          TotalAmount();
+          updateSubAmts(x);
+        }
+
+        else if(search.qty==0) {
+          removeItem(x);
         }
       }})
 
@@ -94,12 +105,15 @@ function displayCart () {
         productList.push(search);
         localStorage.setItem("productList", JSON.stringify(productList))
         update();
+        updateCartCount();
+        TotalAmount();
+        updateSubAmts(x)
 
         })
 
 
     const td3 = document.createElement('td');
-    td3.innerHTML = "$ 30.00"
+    td3.innerHTML = "Rs " + parseInt(productList[i].price.substr(2)) * parseInt(productList[i].qty)
     td3.className = "cart__price"
     tr.appendChild(td3);
 
@@ -109,14 +123,21 @@ function displayCart () {
     span.className = "icon_close"
 
     // Remove item from cart
-    span.addEventListener('click', (x) => {
+    span.addEventListener('click', (x)=>{
+      removeItem(x);
+    })
+
+    function removeItem(x) {
       let selectedItem = x.srcElement.parentElement.parentElement.firstElementChild.lastElementChild.firstElementChild.innerHTML
         console.log(x.srcElement.parentElement.parentElement.firstElementChild.lastElementChild.firstElementChild.innerHTML)
         console.log(productList.filter((x)=>x.name !== selectedItem))
         productList = productList.filter((x)=>x.name !== selectedItem)
         localStorage.setItem("productList", JSON.stringify(productList));
         tr.remove();
-    })
+        update();
+        updateCartCount();
+        TotalAmount();
+    }
 
     td4.appendChild(span);
     tr.appendChild(td4);
@@ -126,10 +147,48 @@ function displayCart () {
 }  
 displayCart();
 
+
+//Updates the count of product on page
 function update(){
-  inputs=[document.getElementsByClassName("qtyinput")]
-  inputs.map((x)=>{
-    console.log(x.value)
+  
+  inputs=document.getElementsByClassName("qtyinput")
+  var arr = [].slice.call(inputs)
+  arr.map((x)=>{
+    let name = x.parentElement.parentElement.parentElement.parentElement.firstElementChild.lastElementChild.firstElementChild.innerHTML
+    x.value = productList.filter((x)=>x.name===name)[0].qty
   })
+  
 }
 update();
+
+let cartCount = 0;
+function updateCartCount() {
+  cartCount = productList.map((x)=>x.qty).reduce((x,y)=>x+y,0)
+  document.getElementsByClassName('header__top__right__cart')[0].firstElementChild.lastElementChild.innerHTML = cartCount
+  // console.log(cartCount)
+}
+updateCartCount();
+
+function TotalAmount() {
+  let amountList = []
+  productList.map((x)=>{
+    let amount = parseInt(x.qty) * parseInt(x.price.substr(2));
+    amountList.push(amount)
+    let totalAmt = amountList.reduce((x,y)=>x+y,0)
+    let total = document.getElementsByClassName('cart__total')[0].lastElementChild.previousElementSibling.lastElementChild.firstElementChild;
+    total.innerHTML = "Rs " + totalAmt
+    let subtotal = document.getElementsByClassName('cart__total')[0].lastElementChild.previousElementSibling.firstElementChild.firstElementChild;
+    subtotal.innerHTML = "Rs " + totalAmt
+
+  })
+}
+
+TotalAmount();
+
+function updateSubAmts(x) {
+  let subAmt = (x.srcElement.parentElement.parentElement.parentElement.nextElementSibling)
+  let qty = (x.srcElement.parentElement.querySelector(".qtyinput").value)
+  let price = (x.srcElement.parentElement.parentElement.parentElement.previousElementSibling.lastElementChild.lastElementChild.innerHTML);
+  subAmt.innerHTML = "Rs " + parseInt(qty) * parseInt(price.substr(2))
+  console.log(x.srcElement.parentElement.querySelector(".qtyinput").value)
+}

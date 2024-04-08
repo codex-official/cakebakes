@@ -1,9 +1,5 @@
 
 let productList = JSON.parse(localStorage.getItem("productList"))
-
-
-
-
 function displayCart () {
   
   for (let i=0;i<productList.length;i++) {
@@ -179,6 +175,7 @@ function TotalAmount() {
     total.innerHTML = "Rs " + totalAmt
     let subtotal = document.getElementsByClassName('cart__total')[0].lastElementChild.previousElementSibling.firstElementChild.firstElementChild;
     subtotal.innerHTML = "Rs " + totalAmt
+    localStorage.setItem("total", totalAmt)
 
   })
 }

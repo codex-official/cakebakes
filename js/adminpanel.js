@@ -39,7 +39,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebas
           for (let i=0;i<chatsArray.length;i++) {
             var list = Object.values(chatsArray[i])
             var link = 'https://firebasestorage.googleapis.com/v0/b/cakebakes-ef849.appspot.com/o/1711620494204-product-1.jpg?alt=media&token=d25f44ab-f4ba-42c3-9cfa-c9c1ea121768'
-        
+            
+
 
             
             
@@ -102,25 +103,52 @@ a.addEventListener('click', (x)=>{
       let itemName =
         currentId.parentElement.previousElementSibling.previousElementSibling
           .firstElementChild.innerHTML;
-          console.log(itemName)
       let itemPrice = currentId.parentElement.previousElementSibling.innerHTML;
       let imgdiv =
         currentId.parentElement.parentElement.previousElementSibling.style
           .backgroundImage;
-
+          
           let productCur = { name: itemName, price: itemPrice, img: imgdiv, qty:1 };
           let productList = JSON.parse(localStorage.getItem("productList")) || [];
-          productList.push(productCur);
-          localStorage.setItem("productList", JSON.stringify(productList));
+          console.log((productList.find((x)=>x.name===productCur.name)))
+
+          if((productList.find((x)=>x.name===productCur.name))!=undefined) {
+            a.style.opacity = "0.3"
+          }
+
+          if((productList.find((x)=>x.name===productCur.name))==undefined) {
+            productList.push(productCur);
+            localStorage.setItem("productList", JSON.stringify(productList));
+            console.log("uploaded")
+          }
+
+
+          
+      a.style.transition = "0.3s"
+      a.style.borderBottomColor = "#11111"
+      a.style.opacity = "0.3"
           
           
-      // localStorage.setItem("cartID" + itemCount, [itemName, itemPrice, imgdiv]);
-      // // console.log(itemName)
-      // localStorage.setItem("itemCount", itemCount);
-      // var cartCount = document.getElementById("cartCount").innerText;
-      // cartCount += 1;
-      // document.getElementById("cartCount").innerText = cartCount;
 });
+a.addEventListener("mouseover",(x)=>{
+  let currentId = document.getElementById(x.srcElement.id);
+      let itemName =
+        currentId.parentElement.previousElementSibling.previousElementSibling
+          .firstElementChild.innerHTML;
+      let itemPrice = currentId.parentElement.previousElementSibling.innerHTML;
+      let imgdiv =
+        currentId.parentElement.parentElement.previousElementSibling.style
+          .backgroundImage;
+          
+          let productCur = { name: itemName, price: itemPrice, img: imgdiv, qty:1 };
+          let productList = JSON.parse(localStorage.getItem("productList")) || [];
+  if((productList.find((x)=>x.name===productCur.name))!=undefined) {
+    a.style.transition = "0.3s"
+    a.style.borderBottomColor = "#11111"
+    a.style.opacity = "0.3"
+  }
+})
+
 div7.appendChild(a);
 
 
@@ -230,4 +258,3 @@ parent.appendChild(div1);
       display();
 
 // const parent= document.getElementById('parent');
-

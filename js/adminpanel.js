@@ -89,7 +89,7 @@ h6.style.fontWeight = "600";
 h6.style.textTransform = "uppercase";
 
 const div6 = document.createElement("div");
-div6.appendChild(document.createTextNode(list[3]));
+div6.appendChild(document.createTextNode("Rs " + list[3]));
 div6.className = "product__item__price"
 div5.appendChild(div6);
 
@@ -237,55 +237,12 @@ parent.appendChild(div1);
 
 // const parent= document.getElementById('parent');
 
-const div1 = document.createElement("div");
-div1.appendChild(document.createTextNode(''));
-div1.className = "col-lg-3 col-md-6 col-sm-6"
-
-const div2 = document.createElement("div");
-div2.appendChild(document.createTextNode(''));
-div2.className = "product__item"
-div1.appendChild(div2);
-
-const div3 = document.createElement("div");
-div3.appendChild(document.createTextNode(''));
-div3.className = "product__item__pic set-bg"
-div3.style.backgroundImage = "url(img/shop/product-1.jpg)";
-div2.appendChild(div3);
-
-const div4 = document.createElement("div");
-div4.appendChild(document.createTextNode(""));
-div4.className = "product__label"
-div3.appendChild(div4);
-
-const span= document.createElement("span");
-span.appendChild(document.createTextNode("Cupcake"));
-div4.appendChild(span);
-
-const div5 = document.createElement("div");
-div5.appendChild(document.createTextNode(""));
-div5.className = "product__item__text"
-div2.appendChild(div5);
-
-const h6 = document.createElement("h6");
-h6.appendChild(document.createTextNode("test"));
-div5.appendChild(h6);
-h6.style.color = "#111111";
-h6.style.fontWeight = "600";
-h6.style.textTransform = "uppercase";
-
-const div6 = document.createElement("div");
-div6.appendChild(document.createTextNode("$32.00"));
-div6.className = "product__item__price"
-div5.appendChild(div6);
-
-const div7 = document.createElement("div");
-div7.appendChild(document.createTextNode(""));
-div7.className = "cart_add"
-div5.appendChild(div7);
-
-const a = document.createElement("a");
-a.appendChild(document.createTextNode("Add to Cart"));
-div7.appendChild(a);
-parent.appendChild(div1);
-
+productList = JSON.parse(localStorage.getItem("productList"))
+let cartCount = 0;
+function updateCartCount() {
+  cartCount = productList.map((x)=>x.qty).reduce((x,y)=>x+y,0)
+  document.getElementsByClassName('header__top__right__cart')[0].firstElementChild.lastElementChild.innerHTML = cartCount
+  console.log(cartCount)
+}
+updateCartCount();
 

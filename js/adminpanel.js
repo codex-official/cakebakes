@@ -39,13 +39,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebas
           for (let i=0;i<chatsArray.length;i++) {
             var list = Object.values(chatsArray[i])
             var link = 'https://firebasestorage.googleapis.com/v0/b/cakebakes-ef849.appspot.com/o/1711620494204-product-1.jpg?alt=media&token=d25f44ab-f4ba-42c3-9cfa-c9c1ea121768'
-            
-
-            productAttr  = {
-              name: list[2],
-              price: list[3],
-            }
-            productList.push(productAttr);
+        
 
             
             

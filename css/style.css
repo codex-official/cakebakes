@@ -29,9 +29,26 @@
 /*----------------------------------------*/
 
 
+
 /* Changes that I have mad in Css:
 
-1) Changed img max-width property from 100% to 90px */
+1) Changed img max-width property from 100% to 90px 
+2) Changed .shopping__cart__table table tbody tr td.quantity__item .quantity .pro-qty input width from 50px to 45%
+3) Changed .shopping__cart__table table tbody tr td.quantity__item .quantity .pro-qty .qtybtn font-size from 16px to 20px
+3) changed .shopping__cart__table table tbody tr td.cart__price @media and added transform: translateY property
+5) changed .header__logo top: 50px to 0px*/
+
+
+
+
+
+
+
+
+
+
+
+
 
 html,
 body {
@@ -89,14 +106,14 @@ img {
   max-width: 90px;
 }
 
-#logo123 {
+/* #logo123 {
   max-width:45%;
   margin-top: -11px;
   transform:translateX(-10pc);
-}
+} */
 
 #logo_title {
-  transform: translate(-5pc,-3.5pc);
+  transform: translate(5pc,-3.5pc);
   font-weight: 600;
   color:#0f0f0f;
   font-family:"Playfair Display", serif;
@@ -407,7 +424,7 @@ ol {
 .header__logo {
   position: absolute;
   left: 50%;
-  top: 25px;
+  top: 0px;
   margin-left: -60px;
 }
 .header__logo a {
@@ -455,8 +472,8 @@ ol {
   color: #111111;
   font-weight: 600;
   position: absolute;
-  left: 7px;
-  top: 4px;
+  left: 5px;
+  top: 5px;
 }
 .header__top__right__cart .cart__price {
   display: inline-block;
@@ -1827,7 +1844,7 @@ ol {
   width: 90px;
 }
 .shopping__cart__table table tbody tr td.quantity__item .quantity .pro-qty input {
-  width: 65px;
+  width: 45%;
   border: none;
   text-align: center;
   color: #111111;
@@ -1835,7 +1852,7 @@ ol {
   font-weight: 500;
 }
 .shopping__cart__table table tbody tr td.quantity__item .quantity .pro-qty .qtybtn {
-  font-size: 16px;
+  font-size: 20px;
   color: #888888;
   width: 10px;
   cursor: pointer;
@@ -3742,6 +3759,7 @@ ol {
 
   .shopping__cart__table table tbody tr td.cart__price {
     width: auto;
+    transform: translateX(-14px);
   }
 
   .wishlist__cart__table {

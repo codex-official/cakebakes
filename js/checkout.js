@@ -33,14 +33,13 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebas
 
         const firstName = document.getElementById("firstName");
         const lastName = document.getElementById("lastName");
-        const address1 = document.getElementById("address1");
-        const address2 = document.getElementById("address2");
-        const town = document.getElementById("town");
-        const state = document.getElementById("state");
+        
+       
         const postcode = document.getElementById("postcode");
         const phone = document.getElementById("phone");
         const email = document.getElementById("email");
         const orderNotes = document.getElementById("orderNotes");
+
 
         const uniqueId = () => {
             const dateString = Date.now().toString().slice(-8,-1);
@@ -49,15 +48,29 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebas
           };
 
     function placeOrder() {
+        const address1 = document.getElementById("address1");
+        const address2 = document.getElementById("address2");
+        const town = document.getElementById("town");
+        const state = document.getElementById("state");
+
+        const date = new Date();
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
+        let year = date.getFullYear();
+        let currentDate = `${day}-${month}-${year}`;
         set(ref(database, 'orders/' + uniqueId()), {
             firstName: firstName.value,
             lastName: lastName.value,
+            address: address1.value + ", " + address2.value + ", " + town.value + ", " + state.value,
+            postcode: postcode.value,
             phone: phone.value,
+            email: email.value,
+            orderNotes:orderNotes.value,
             order:basket,
-            orderID: uniqueId()
+            orderID: uniqueId(),
+            date: currentDate
 
         });
-        console.log(uniqueId());
     }
 
 
@@ -91,7 +104,7 @@ function displayOrders() {
         let orderList = Object.values(snapshot.val());
         for (let i=0;i<orderList.length;i++) {
             orderList[i].order.map((x)=>{
-                console.log(x)
+                // console.log(x)
             })
         }
         

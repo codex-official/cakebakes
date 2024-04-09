@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin</title>
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-storage.js"></script>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+      import {
+        getDatabase,
+        ref,
+        push,
+        onValue,
+        set,
+        get,
+        child,
+      } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyBTMQCoptdmqXnPVIYQBThVbUEpgVIc1TA",
+        databaseURL: "https://cakebakes-ef849-default-rtdb.firebaseio.com/",
+        authDomain: "cakebakes-ef849.firebaseapp.com",
+        projectId: "cakebakes-ef849",
+        storageBucket: "cakebakes-ef849.appspot.com",
+        messagingSenderId: "151347937117",
+        appId: "1:151347937117:web:655ed4a6ee5f39d479b2b4",
+        measurementId: "G-E078NQ13MR",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const database = getDatabase(app);
+
+      const products = ref(database, "products");
+      const orders = ref(database, "orders");
+
+      const submit2 = document.getElementById("button");
+      submit2.addEventListener("click", upload);
+
+      function setData() {
+        firebase.initializeApp(firebaseConfig);
+        const refer = firebase.storage().ref();
+        const file = document.getElementById("img").files[0];
+        const imgname = +new Date() + "-" + file.name;
+        const metadata = {
+          contentType: file.type,
+        };
+        const task = refer.child(imgname).put(file, metadata);
+        task
+          .then((snapshot) => snapshot.ref.getDownloadURL())
+          .then((url) => {
+            const name = document.getElementById("name").value;
+            const price = document.getElementById("price").value;
+            const info = document.getElementById("info").value;
+            console.log("valid")
+            // if ((name=="")||((parseInt(price)==NaN))) {
+            //   console.log("not valid")
+            // }
+            // set(ref(database, "products/" + name), {
+            //   name: name,
+            //   price: price,
+            //   info: info,
+            //   img: url,
+            // });
+            console.log(url);
+            alert("image uploaded successfully");
+          })
+          .catch(console.error);
+      }
+
+      function uploadImage() {
+        firebase.initializeApp(firebaseConfig);
+        const refer = firebase.storage().ref();
+        const file = document.getElementById("img").files[0];
+        const name = +new Date() + "-" + file.name;
+        const metadata = {
+          contentType: file.type,
+        };
+        const task = refer.child(name).put(file, metadata);
+        task
+          .then((snapshot) => snapshot.ref.getDownloadURL())
+          .then((url) => {
+            console.log(url);
+            alert("image uploaded successfully");
+          })
+          .catch(console.error);
+      }
+
+      function upload() {
+        setData();
+        uploadImage();
+      }
+
+      const parent = document.getElementById("myTable");
+
+      function getOrders() {
+        onValue(orders, function (snapshot) {
+          let orderGet = Object.values(snapshot.val());
+          test(orderGet);
+        });
+      }
+      getOrders();
+
+      function test(orderList) {
+        orderList.map((x) => {
+          parent.innerHTML += `
+          <tr>
+        <td>${x.date}</td>
+        <td>${x.firstName}</td>
+        <td>${x.lastName}</td>
+        <td class="address">${x.address}</td>
+        <td>${x.postcode}</td>
+        <td>${x.phone}</td>
+        <td>${x.email}</td>
+        <td class="vieworders" style="cursor:pointer">View Order</td>
+        <td>${x.orderID}</td>
+        <td>${x.orderNotes}</td>
+      </tr>
+          `;
+
+          var btns = document.getElementsByClassName("vieworders");
+          btns = [].slice.call(btns);
+          btns.map((x) => {
+            x.addEventListener("click", viewOrders);
+          });
+        });
+        // console.log(orderList);
+      }
+      const orderParent = document.getElementById("orderTable");
+      function viewOrders(x) {
+        orderParent.innerHTML = "";
+        var id = x.srcElement.nextElementSibling.innerHTML;
+        parent3.innerHTML = `
+            <h4>${(x.srcElement.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML) + " " + (x.srcElement.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML)}</h4>
+            <h5>Address: ${(x.srcElement.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML)}</h5>
+            
+            `
+        onValue(orders, function (snapshot) {
+          let orderGet = Object.values(snapshot.val());
+          var orderEntry = orderGet.filter((y) => y.orderID === id);
+          var order = orderEntry[0].order;
+          order.map((z) => {
+            console.log(x.srcElement.previousElementSibling);
+
+            orderParent.innerHTML += `
+            <tr>
+        <td>${z.name}</td>
+        <td>${z.price}</td>
+        <td>${z.qty}</td>
+        <td>Rs ${parseInt(z.qty) * parseInt(z.price.substr(2))}</td>
+      </tr>
+            `;
+            const parent3 = document.getElementById("parent3");
+            
+            
+          });
+        });
+      }
+    </script>
+  </head>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+
+    .container {
+        max-width: fit-content;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        overflow:scroll;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    #test {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    input[type="file"],
+    input[type="text"],
+    button[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    button[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 30px;
+        overflow: scroll;
+    }
+
+    table,
+    th,
+    td {
+        border: 1px solid #ddd;
+        overflow:hidden;
+    }
+
+    th,
+    td {
+        padding: 10px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    #orderTable {
+        margin-top: 20px;
+    }
+
+    .vieworders {
+    cursor: pointer;
+    background-color: #f0f0f0; /* Change to desired background color */
+}
+
+    .vieworders:hover {
+    background-color: #e0e0e0; /* Change to desired hover background color */
+}
+
+
+
+</style>
+</head>
+
+
+
+
+
+  <body>
+    <div class="container">
+      <h1>CakeBakes Admin Panel</h1>
+      <form action="">
+        <p id="test">Choose product image</p>
+    <input type="file" id="img" name="filename" />
+    <input type="text" id="name" placeholder="Product name" />
+    <input type="text" id="price" placeholder="Product price" />
+    <input type="text" id="info" placeholder="Additional Info" />
+    <button type="submit" id="button">Submit</button>
+      </form>
+    
+      <h3>Order List</h5>
+    <table id="myTable">
+      <tr>
+        <td>Date</td>
+        <td>First Name</td>
+        <td>Last Name</td>
+        <td>Address</td>
+        <td>Postcode</td>
+        <td>Phone</td>
+        <td>Email</td>
+        <td>Order</td>
+        <td>OrderID</td>
+        <td>Order Notes</td>
+      </tr>
+    </table>
+    <h3>Selected Order</h3>
+    <h3 id="parent3"></h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Qty</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody id="orderTable">
+        <tr>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+    
+  </body>
+  
+</html>

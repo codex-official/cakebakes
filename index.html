@@ -6,7 +6,7 @@
     <meta name="keywords" content="Cake, unica, creative, html" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Cake | Template</title>
+    <title>CakeBakes by Khushi Shah</title>
 
     <!-- Google Font -->
     <link
@@ -55,7 +55,7 @@
             <a href="./index.html"><img src="img/cakebakeslogo.jpg" alt=""></a>
         </div>
         <div id="mobile-menu-wrap"></div>
-        <div class="offcanvas__option">
+        <!-- <div class="offcanvas__option">
             <ul>
                 <li>USD <span class="arrow_carrot-down"></span>
                     <ul>
@@ -71,7 +71,7 @@
                 </li>
                 <li><a href="#">Sign in</a> <span class="arrow_carrot-down"></span></li>
             </ul>
-        </div>
+        </div> -->
     </div>
     <!-- Offcanvas Menu End -->
 
@@ -95,7 +95,7 @@
                     <a href="#" class="search-switch"
                       ><img src="img/icon/search.png" alt=""
                     /></a>
-                    <a href="#"><img src="img/icon/heart.png" alt=""/></a>
+                    <!-- <a href="#"><img src="img/icon/heart.png" alt=""/></a> -->
                   </div>
                   <div class="header__top__right__cart">
                     <a href="./shoping-cart.html" 
@@ -118,6 +118,7 @@
                 <li class="active"><a href="./index.html">Home</a></li>
                 <li><a href="./about.html">About</a></li>
                 <li><a href="./shop.html">Shop</a></li>
+                <li><a href="./shoping-cart.html">Cart</a></li>
                 <li>
                   <!-- <a href="#">Pages</a>
                   <ul class="dropdown">
@@ -129,7 +130,7 @@
                     <li><a href="./blog-details.html">Blog Details</a></li>
                   </ul> -->
                 </li>
-                <li><a href="./blog.html">Blog</a></li>
+                <!-- <li><a href="./blog.html">Blog</a></li> -->
                 <li><a href="./contact.html">Contact</a></li>
               </ul>
             </nav>
@@ -282,7 +283,7 @@
                 <h6><a href="#">Chocolate Cake</a></h6>
                 <div class="product__item__price">Rs 475</div>
                 <div class="cart_add">
-                  <a href="#">Add to cart</a>
+                  <a href="#" onclick="addtoCart(this)" id="one">Add to cart</a>
                 </div>
               </div>
             </div>
@@ -301,7 +302,7 @@
                 <h6><a href="#">Cupcakes</a></h6>
                 <div class="product__item__price">Rs 300</div>
                 <div class="cart_add">
-                  <a href="#">Add to cart</a>
+                  <a href="#" onclick="addtoCart(this)" id="two">Add to cart</a>
                 </div>
               </div>
             </div>
@@ -320,7 +321,7 @@
                 <h6><a href="#">Gluten Free Mini Dozen</a></h6>
                 <div class="product__item__price">$31.00</div>
                 <div class="cart_add">
-                  <a href="#">Add to cart</a>
+                  <a href="#" onclick="addtoCart(this)" id="three">Add to cart</a>
                 </div>
               </div>
             </div>
@@ -339,7 +340,7 @@
                 <h6><a href="#">Cookie Dough</a></h6>
                 <div class="product__item__price">$25.00</div>
                 <div class="cart_add">
-                  <a href="#">Add to cart</a>
+                  <a href="#" onclick="addtoCart(this)" id="four">Add to cart</a>
                 </div>
               </div>
             </div>
@@ -358,7 +359,7 @@
                 <h6><a href="#">Vanilla Salted Caramel</a></h6>
                 <div class="product__item__price">$05.00</div>
                 <div class="cart_add">
-                  <a href="#">Add to cart</a>
+                  <a href="#" onclick="addtoCart(this)" id="five">Add to cart</a>
                 </div>
               </div>
             </div>
@@ -377,7 +378,7 @@
                 <h6><a href="#">German Chocolate</a></h6>
                 <div class="product__item__price">$14.00</div>
                 <div class="cart_add">
-                  <a href="#">Add to cart</a>
+                  <a href="#" onclick="addtoCart(this)" id="six">Add to cart</a>
                 </div>
               </div>
             </div>
@@ -396,7 +397,7 @@
                 <h6><a href="#">Dulce De Leche</a></h6>
                 <div class="product__item__price">$32.00</div>
                 <div class="cart_add">
-                  <a href="#">Add to cart</a>
+                  <a href="#" onclick="addtoCart(this)" id="seven">Add to cart</a>
                 </div>
               </div>
             </div>
@@ -415,7 +416,7 @@
                 <h6><a href="#">Mississippi Mud</a></h6>
                 <div class="product__item__price">$08.00</div>
                 <div class="cart_add">
-                  <a href="#">Add to cart</a>
+                  <a href="#" onclick="addtoCart(this)" id="eight">Add to cart</a>
                 </div>
               </div>
             </div>
@@ -871,4 +872,88 @@
     <script src="js/main.js"></script>
   </body>
   <script src="js/firebase.js" type="module"></script>
+  <script defer>
+    
+
+    function addtoCart(x) {
+      let currentId = document.getElementById(x.id);
+      let itemName =
+        currentId.parentElement.previousElementSibling.previousElementSibling
+          .firstElementChild.innerHTML;
+      let itemPrice = currentId.parentElement.previousElementSibling.innerHTML;
+      let imgdiv =
+        currentId.parentElement.parentElement.previousElementSibling.style
+          .backgroundImage;
+      let a = currentId;
+      console.log(currentId)
+
+      let productCur = {
+        name: itemName,
+        price: itemPrice,
+        img: imgdiv,
+        qty: 1,
+      };
+
+      let productList = JSON.parse(localStorage.getItem("productList")) || [];
+      console.log((productList.find((x)=>x.name===productCur.name)))
+
+      if((productList.find((x)=>x.name===productCur.name))!=undefined) {
+        a.style.opacity = "0.3"
+      }
+
+      if((productList.find((x)=>x.name===productCur.name))==undefined) {
+        productList.push(productCur);
+        localStorage.setItem("productList", JSON.stringify(productList));
+        console.log("uploaded")
+      }
+          
+      a.style.transition = "0.3s"
+      a.style.borderBottomColor = "#11111"
+      a.style.opacity = "0.3"
+      a.innerHTML = "Added to Cart"
+
+      
+
+      // currentId.addEventListener("mouseover",(x)=>{
+        
+        
+      
+      //   })
+
+      // productList.push(productCur);
+      // localStorage.setItem("productList", JSON.stringify(productList));
+      
+    }
+
+    let buttons  = document.getElementsByClassName("cart_add");
+    let productList = JSON.parse(localStorage.getItem("productList")) || [];
+      buttons = [].slice.call(buttons);
+      buttons.map((x)=>{
+        x.addEventListener("mouseover",(x)=>{
+          let currentId = document.getElementById(x.srcElement.id);
+          let a = currentId
+          let itemName =
+          currentId.parentElement.previousElementSibling.previousElementSibling
+            .firstElementChild.innerHTML;
+          let itemPrice = currentId.parentElement.previousElementSibling.innerHTML;
+          let imgdiv =
+            currentId.parentElement.parentElement.previousElementSibling.style
+              .backgroundImage;
+
+          let productCur = {
+            name: itemName,
+            price: itemPrice,
+            img: imgdiv,
+            qty: 1,
+        };
+            
+          if((productList.find((x)=>x.name===productCur.name))!=undefined) {
+            a.style.transition = "0.3s"
+            a.style.borderBottomColor = "#11111"
+            a.style.opacity = "0.3"
+            a.innerHTML = "Added to Cart"
+            }
+      })
+    })
+  </script>
 </html>

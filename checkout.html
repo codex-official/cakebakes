@@ -223,7 +223,7 @@
                   />
                   <input
                     type="text"
-                    placeholder="Apartment, suite, unite ect (optinal)"
+                    placeholder="Apartment, suite, street(optional)"
                     id="address2"
                   />
                 </div>
@@ -276,7 +276,7 @@
                   </label>
                 </div> -->
                 <div class="checkout__input">
-                  <p>Order notes<span>*</span></p>
+                  <p>Order notes</p>
                   <input
                     type="text"
                     placeholder="Notes about your order, e.g. special notes for delivery."
@@ -325,8 +325,10 @@
                       <span class="checkmark"></span>
                     </label>
                   </div> -->
-                  <button type="submit" class="site-btn" id="submit">
-                    PLACE ORDER
+                  <button type="button" class="site-btn" id="submit">
+                    <!-- <a href="./success.html" style="color: white" -->
+                      PLACE ORDER</a
+                    >
                   </button>
                 </div>
               </div>
@@ -433,5 +435,10 @@
     <script src="js/jquery.nicescroll.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/checkout.js" type="module"></script>
+    <script>
+      document.getElementsByClassName('header__top__right__cart')[0].firstElementChild.lastElementChild.innerHTML = JSON.parse(localStorage.getItem("cartCount"))
+
+    </script>
+
   </body>
 </html>

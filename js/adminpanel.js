@@ -28,8 +28,9 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebas
 
     const products = ref(database, "products");
 
-    let productList=[]
-    var productAttr;
+    // let productList=[]
+    // var productAttr;
+    var shopList = []
     const parent= document.getElementById('parent');
 
     function display() {
@@ -40,7 +41,9 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebas
             var list = Object.values(chatsArray[i])
             var link = 'https://firebasestorage.googleapis.com/v0/b/cakebakes-ef849.appspot.com/o/1711620494204-product-1.jpg?alt=media&token=d25f44ab-f4ba-42c3-9cfa-c9c1ea121768'
             
-
+            shopList.push(list[2])
+            // console.log(shopList)
+            localStorage.setItem("shopList", JSON.stringify(shopList))
 
             
             
@@ -66,7 +69,7 @@ div4.className = "product__label"
 div3.appendChild(div4);
 
 const span= document.createElement("span");
-span.appendChild(document.createTextNode("Cupcake"));
+span.appendChild(document.createTextNode(list[1]));
 div4.appendChild(span);
 
 const div5 = document.createElement("div");

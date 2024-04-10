@@ -58,21 +58,32 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebas
         let month = date.getMonth() + 1;
         let year = date.getFullYear();
         let currentDate = `${day}-${month}-${year}`;
-        set(ref(database, 'orders/' + uniqueId()), {
-            firstName: firstName.value,
-            lastName: lastName.value,
-            address: address1.value + ", " + address2.value + ", " + town.value + ", " + state.value,
-            postcode: postcode.value,
-            phone: phone.value,
-            email: email.value,
-            orderNotes:orderNotes.value,
-            order:basket,
-            orderID: uniqueId(),
-            date: currentDate
-
-        });
+        
+        
+        let localID = localStorage.setItem("orderID", uniqueId())
+        if ((firstName.value=="")||(lastName.value=="")||(address1.value=="")||(lastName.value=="")||(town.value=="")||(state.value=="")||(postcode.value=="")||(phone.value=="")||(email.value=="")) {
+            alert("Invalid Credentials! Please fill all the necessary details")
+        }
+        else {
+            set(ref(database, 'orders/' + uniqueId()), {
+                firstName: firstName.value,
+                lastName: lastName.value,
+                address: address1.value + ", " + address2.value + ", " + town.value + ", " + state.value,
+                postcode: postcode.value,
+                phone: phone.value,
+                email: email.value,
+                orderNotes:orderNotes.value,
+                order:basket,
+                orderID: uniqueId(),
+                date: currentDate
+    
+            });
+            window.location.href = "./success.html";
+        }
+        
     }
 
+    
 
 
 var parent = document.getElementsByClassName("checkout__total__products")

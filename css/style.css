@@ -36,7 +36,8 @@
 2) Changed .shopping__cart__table table tbody tr td.quantity__item .quantity .pro-qty input width from 50px to 45%
 3) Changed .shopping__cart__table table tbody tr td.quantity__item .quantity .pro-qty .qtybtn font-size from 16px to 20px
 3) changed .shopping__cart__table table tbody tr td.cart__price @media and added transform: translateY property
-5) changed .header__logo top: 50px to 0px*/
+5) changed .header__logo top: 50px to 0px
+6) Added .breadcrumb__text h3 css*/
 
 
 
@@ -113,7 +114,7 @@ img {
 } */
 
 #logo_title {
-  transform: translate(5pc,-3.5pc);
+  transform: translate(6pc,-4pc);
   font-weight: 600;
   color:#0f0f0f;
   font-family:"Playfair Display", serif;
@@ -1336,6 +1337,14 @@ ol {
   font-size: 50px;
   color: #000000;
   font-weight: 700;
+  font-style: italic;
+  font-family: "Playfair Display", serif;
+}
+
+.breadcrumb__text h3 {
+  font-size: 40px;
+  color: #000000;
+  font-weight: 500;
   font-style: italic;
   font-family: "Playfair Display", serif;
 }

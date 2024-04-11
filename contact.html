@@ -45,15 +45,15 @@
           <a href="#" class="search-switch"
             ><img src="img/icon/search.png" alt=""
           /></a>
-          <a href="#"><img src="img/icon/heart.png" alt="" /></a>
+          <!-- <a href="#"><img src="img/icon/heart.png" alt="" /></a> -->
         </div>
         <div class="offcanvas__cart__item">
           <a href="#"><img src="img/icon/cart.png" alt="" /> <span>0</span></a>
-          <div class="cart__price">Cart: <span>$0.00</span></div>
+          <div class="cart__price">Cart: <span>Rs 0</span></div>
         </div>
       </div>
       <div class="offcanvas__logo">
-        <a href="./index.html"><img src="img/logo.png" alt="" /></a>
+        <a href="./index.html"><img src="img/cakebakeslogo.jpg" alt="" /></a>
       </div>
       <div id="mobile-menu-wrap"></div>
       <!-- <div class="offcanvas__option">
@@ -121,7 +121,7 @@
                     <a href="#"
                       ><img src="img/icon/cart.png" alt="" /> <span>0</span></a
                     >
-                    <div class="cart__price">Cart: <span>$0.00</span></div>
+                    <div class="cart__price">Cart: <span>Rs 0</span></div>
                   </div>
                 </div>
               </div>
@@ -402,5 +402,38 @@
     <script src="js/jquery.nicescroll.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/firebase.js" type="module"></script>
+    <script defer>
+      function updateCartCount() {
+        let productList = JSON.parse(localStorage.getItem("productList")) || [];
+        cartCount = productList.map((x) => x.qty).reduce((x, y) => x + y, 0);
+        document.getElementsByClassName(
+          "header__top__right__cart"
+        )[0].firstElementChild.lastElementChild.innerHTML = cartCount;
+        document.getElementsByClassName(
+          "offcanvas__cart__item"
+        )[0].firstElementChild.lastElementChild.innerHTML = cartCount;
+        localStorage.setItem("cartCount", JSON.stringify(cartCount));
+        var arr = [].slice.call(document.getElementsByClassName("cart__price"));
+        arr.map((x) => {
+          x.firstElementChild.innerHTML =
+            "Rs " + JSON.parse(localStorage.getItem("total"));
+        });
+      }
+      updateCartCount();
+
+      function switchPage() {
+        $(".search-switch").on("click", function () {
+          // console.log($("#search-input").val())
+
+          $("#search-input").on("blur", function () {
+            let query = $("#search-input").val();
+            localStorage.setItem("searchQuery", JSON.stringify(query));
+            window.location.href = "./shop.html";
+            // $("#searcher").val(query)
+          });
+        });
+      }
+      switchPage();
+    </script>
   </body>
 </html>

@@ -1,9 +1,10 @@
 
 let productList = JSON.parse(localStorage.getItem("productList"))
+const parent= document.getElementById('parent2');
 function displayCart () {
   
   for (let i=0;i<productList.length;i++) {
-    const parent= document.getElementById('parent2');
+    
     const tr = document.createElement("tr");
     
     const td = document.createElement("td");
@@ -78,6 +79,7 @@ function displayCart () {
           updateCartCount();
           TotalAmount();
           updateSubAmts(x);
+          emptyCart();
         }
 
         else if(search.qty==0) {
@@ -125,14 +127,15 @@ function displayCart () {
 
     function removeItem(x) {
       let selectedItem = x.srcElement.parentElement.parentElement.firstElementChild.lastElementChild.firstElementChild.innerHTML
-        console.log(x.srcElement.parentElement.parentElement.firstElementChild.lastElementChild.firstElementChild.innerHTML)
-        console.log(productList.filter((x)=>x.name !== selectedItem))
+        // console.log(x.srcElement.parentElement.parentElement.firstElementChild.lastElementChild.firstElementChild.innerHTML)
+        // console.log(productList.filter((x)=>x.name !== selectedItem))
         productList = productList.filter((x)=>x.name !== selectedItem)
         localStorage.setItem("productList", JSON.stringify(productList));
         tr.remove();
         update();
         updateCartCount();
         TotalAmount();
+        emptyCart();
     }
 
     td4.appendChild(span);
@@ -161,23 +164,38 @@ let cartCount = 0;
 function updateCartCount() {
   cartCount = productList.map((x)=>x.qty).reduce((x,y)=>x+y,0)
   document.getElementsByClassName('header__top__right__cart')[0].firstElementChild.lastElementChild.innerHTML = cartCount
-  // console.log(cartCount)
+  document.getElementsByClassName('offcanvas__cart__item')[0].firstElementChild.lastElementChild.innerHTML = cartCount
+  localStorage.setItem("cartCount", JSON.stringify(cartCount))
+  var arr  = [].slice.call(document.getElementsByClassName("cart__price"))
+  arr.map((x)=>{
+    (x.firstElementChild.innerHTML) = "Rs " + JSON.parse(localStorage.getItem("total"));
+  })
 }
 updateCartCount();
 
+
+//Update Totals
 function TotalAmount() {
   let amountList = []
+  let total = document.getElementsByClassName('cart__total')[0].lastElementChild.previousElementSibling.lastElementChild.firstElementChild;
+  let subtotal = document.getElementsByClassName('cart__total')[0].lastElementChild.previousElementSibling.firstElementChild.firstElementChild;
   productList.map((x)=>{
     let amount = parseInt(x.qty) * parseInt(x.price.substr(2));
     amountList.push(amount)
     let totalAmt = amountList.reduce((x,y)=>x+y,0)
-    let total = document.getElementsByClassName('cart__total')[0].lastElementChild.previousElementSibling.lastElementChild.firstElementChild;
     total.innerHTML = "Rs " + totalAmt
-    let subtotal = document.getElementsByClassName('cart__total')[0].lastElementChild.previousElementSibling.firstElementChild.firstElementChild;
+    
     subtotal.innerHTML = "Rs " + totalAmt
     localStorage.setItem("total", totalAmt)
-
+    
   })
+  if (amountList[0]==undefined){
+    console.log(amountList)
+    total.innerHTML = "Rs 0" 
+    subtotal.innerHTML = "Rs 0" 
+  }
+
+  
 }
 
 TotalAmount();
@@ -189,3 +207,30 @@ function updateSubAmts(x) {
   subAmt.innerHTML = "Rs " + parseInt(qty) * parseInt(price.substr(2))
   console.log(x.srcElement.parentElement.querySelector(".qtyinput").value)
 }
+
+function emptyCart() {
+  if (productList[0]==undefined) {
+    parent.innerHTML = `<div class="breadcrumb__text">
+    <h3>Your cart is empty</h3>
+  </div>`
+    console.log("empty")
+  }
+}
+emptyCart();
+
+function switchPage() {
+  $(".search-switch").on('click', function() {
+    // console.log($("#search-input").val())
+    
+    $("#search-input").on("blur", function() {
+      let query = ($("#search-input").val())
+      localStorage.setItem("searchQuery", JSON.stringify(query));
+      window.location.href = "./shop.html"
+      // $("#searcher").val(query)
+      
+    }) 
+      
+    
+  })
+}
+switchPage();

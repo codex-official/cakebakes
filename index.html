@@ -44,11 +44,11 @@
         <div class="offcanvas__cart">
             <div class="offcanvas__cart__links">
                 <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
-                <a href="#"><img src="img/icon/heart.png" alt=""></a>
+                <!-- <a href="#"><img src="img/icon/heart.png" alt=""></a> -->
             </div>
             <div class="offcanvas__cart__item">
-                <a href="#"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
-                <div class="cart__price">Cart: <span>$0.00</span></div>
+                <a href="shoping-cart.html"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
+                <div class="cart__price">Cart: <span>$Rs 0</span></div>
             </div>
         </div>
         <div class="offcanvas__logo">
@@ -101,7 +101,7 @@
                     <a href="./shoping-cart.html" 
                       ><img src="img/icon/cart.png" alt="" /> <span>0</span></a
                     >
-                    <div class="cart__price">Cart: <span>$0.00</span></div>
+                    <div class="cart__price">Cart: <span>Rs 0</span></div>
                   </div>
                 </div>
               </div>
@@ -149,7 +149,7 @@
               <div class="col-lg-8">
                 <div class="hero__text">
                   <h2>Making your life sweeter one bite at a time!</h2>
-                  <a href="#" class="primary-btn">Our cakes</a>
+                  <a href="shop.html" class="primary-btn">Our cakes</a>
                 </div>
               </div>
             </div>
@@ -283,7 +283,7 @@
                 <h6><a href="#">Chocolate Cake</a></h6>
                 <div class="product__item__price">Rs 475</div>
                 <div class="cart_add">
-                  <a onclick="addtoCart(this)" id="one">Add to cart</a>
+                  <a href="#" onclick="addtoCart(this)" id="one">Add to cart</a>
                 </div>
               </div>
             </div>
@@ -302,7 +302,7 @@
                 <h6><a href="#">Cupcakes</a></h6>
                 <div class="product__item__price">Rs 300</div>
                 <div class="cart_add">
-                  <a onclick="addtoCart(this)" id="two">Add to cart</a>
+                  <a href="#" onclick="addtoCart(this)" id="two">Add to cart</a>
                 </div>
               </div>
             </div>
@@ -321,7 +321,7 @@
                 <h6><a href="#">Gluten Free Mini Dozen</a></h6>
                 <div class="product__item__price">$31.00</div>
                 <div class="cart_add">
-                  <a onclick="addtoCart(this)" id="three">Add to cart</a>
+                  <a href="#" onclick="addtoCart(this)" id="three">Add to cart</a>
                 </div>
               </div>
             </div>
@@ -340,7 +340,7 @@
                 <h6><a href="#">Cookie Dough</a></h6>
                 <div class="product__item__price">$25.00</div>
                 <div class="cart_add">
-                  <a onclick="addtoCart(this)" id="four">Add to cart</a>
+                  <a href="#" onclick="addtoCart(this)" id="four">Add to cart</a>
                 </div>
               </div>
             </div>
@@ -359,7 +359,7 @@
                 <h6><a href="#">Vanilla Salted Caramel</a></h6>
                 <div class="product__item__price">$05.00</div>
                 <div class="cart_add">
-                  <a onclick="addtoCart(this)" id="five">Add to cart</a>
+                  <a href="#" onclick="addtoCart(this)" id="five">Add to cart</a>
                 </div>
               </div>
             </div>
@@ -378,7 +378,7 @@
                 <h6><a href="#">German Chocolate</a></h6>
                 <div class="product__item__price">$14.00</div>
                 <div class="cart_add">
-                  <a onclick="addtoCart(this)" id="six">Add to cart</a>
+                  <a href="#" onclick="addtoCart(this)" id="six">Add to cart</a>
                 </div>
               </div>
             </div>
@@ -397,7 +397,7 @@
                 <h6><a href="#">Dulce De Leche</a></h6>
                 <div class="product__item__price">$32.00</div>
                 <div class="cart_add">
-                  <a onclick="addtoCart(this)" id="seven">Add to cart</a>
+                  <a href="#" onclick="addtoCart(this)" id="seven">Add to cart</a>
                 </div>
               </div>
             </div>
@@ -416,7 +416,7 @@
                 <h6><a href="#">Mississippi Mud</a></h6>
                 <div class="product__item__price">$08.00</div>
                 <div class="cart_add">
-                  <a onclick="addtoCart(this)" id="eight">Add to cart</a>
+                  <a href="#" onclick="addtoCart(this)" id="eight">Add to cart</a>
                 </div>
               </div>
             </div>
@@ -873,6 +873,8 @@
   </body>
   <script src="js/firebase.js" type="module"></script>
   <script defer>
+
+    let cartCount = JSON.parse(localStorage.getItem("cartCount")) || 0;
     
 
     function addtoCart(x) {
@@ -912,16 +914,7 @@
       a.style.opacity = "0.3"
       a.innerHTML = "Added to Cart"
 
-      
-
-      // currentId.addEventListener("mouseover",(x)=>{
-        
-        
-      
-      //   })
-
-      // productList.push(productCur);
-      // localStorage.setItem("productList", JSON.stringify(productList));
+      updateCartCount();
       
     }
 
@@ -954,6 +947,38 @@
             a.innerHTML = "Added to Cart"
             }
       })
+
+      
     })
+
+    function switchPage() {
+        $(".search-switch").on('click', function() {
+          // console.log($("#search-input").val())
+          
+          $("#search-input").on("blur", function() {
+            let query = ($("#search-input").val())
+            localStorage.setItem("searchQuery", JSON.stringify(query));
+            window.location.href = "./shop.html"
+            // $("#searcher").val(query)
+            
+          }) 
+            
+          
+        })
+      }
+      switchPage();
+
+    function updateCartCount() {
+        let productList = JSON.parse(localStorage.getItem("productList")) || [];
+        cartCount = productList.map((x)=>x.qty).reduce((x,y)=>x+y,0)
+        document.getElementsByClassName('header__top__right__cart')[0].firstElementChild.lastElementChild.innerHTML = cartCount
+        document.getElementsByClassName('offcanvas__cart__item')[0].firstElementChild.lastElementChild.innerHTML = cartCount
+        localStorage.setItem("cartCount", JSON.stringify(cartCount))
+        var arr  = [].slice.call(document.getElementsByClassName("cart__price"))
+        arr.map((x)=>{
+          (x.firstElementChild.innerHTML) = "Rs " + JSON.parse(localStorage.getItem("total"));
+        })
+      }
+    updateCartCount();
   </script>
 </html>

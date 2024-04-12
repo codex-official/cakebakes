@@ -32,7 +32,6 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebas
     // var productAttr;
     var shopList = []
     const parent= document.getElementById('parent');
-    let productList = JSON.parse(localStorage.getItem("productList")) || [];
     let cartCount = JSON.parse(localStorage.getItem("cartCount")) || 0;
 
     function display() {
@@ -136,6 +135,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebas
         updateCartCount();
           
         });
+
         a.addEventListener("mouseover",(x)=>{
           let currentId = document.getElementById(x.srcElement.id);
               let itemName =

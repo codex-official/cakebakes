@@ -135,7 +135,6 @@ function displayCart () {
         TotalAmount();
         update();
         updateCartCount();
-        
         emptyCart();
     }
 

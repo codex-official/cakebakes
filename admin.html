@@ -6,6 +6,16 @@
     <title>Admin</title>
     <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-storage.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+      (function(){
+          emailjs.init({
+            publicKey: "YpQSUHdfMGbzvPjWh",
+          });
+      })();
+    </script>
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
       import {
@@ -16,6 +26,8 @@
         set,
         get,
         child,
+        remove,
+        update
       } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
 
       const firebaseConfig = {
@@ -35,6 +47,7 @@
 
       const products = ref(database, "products");
       const orders = ref(database, "orders");
+      
 
       const submit2 = document.getElementById("button");
       submit2.addEventListener("click", upload);
@@ -55,15 +68,15 @@
             const price = document.getElementById("price").value;
             const info = document.getElementById("info").value;
             console.log("valid")
-            // if ((name=="")||((parseInt(price)==NaN))) {
-            //   console.log("not valid")
-            // }
-            // set(ref(database, "products/" + name), {
-            //   name: name,
-            //   price: price,
-            //   info: info,
-            //   img: url,
-            // });
+            if ((name=="")||((parseInt(price)==NaN))) {
+              console.log("not valid")
+            }
+            set(ref(database, "products/" + name), {
+              name: name,
+              price: price,
+              info: info,
+              img: url,
+            });
             console.log(url);
             alert("image uploaded successfully");
           })
@@ -71,7 +84,7 @@
       }
 
       function uploadImage() {
-        firebase.initializeApp(firebaseConfig);
+        // firebase.initializeApp(firebaseConfig);
         const refer = firebase.storage().ref();
         const file = document.getElementById("img").files[0];
         const name = +new Date() + "-" + file.name;
@@ -117,6 +130,8 @@
         <td class="vieworders" style="cursor:pointer">View Order</td>
         <td>${x.orderID}</td>
         <td>${x.orderNotes}</td>
+        <td class="delete">Delete</td>
+        <td class="approve">Approve</td>
       </tr>
           `;
 
@@ -125,13 +140,27 @@
           btns.map((x) => {
             x.addEventListener("click", viewOrders);
           });
+
+          var delbtn = document.getElementsByClassName("delete");
+          delbtn = [].slice.call(delbtn);
+          delbtn.map((x) => {
+            x.addEventListener("click", deleteOrders);
+          });
+
+          var apprbtn = document.getElementsByClassName("approve");
+          apprbtn = [].slice.call(apprbtn);
+          apprbtn.map((x) => {
+            x.addEventListener("click", sendEmail);
+          });
         });
-        // console.log(orderList);
+
+
       }
       const orderParent = document.getElementById("orderTable");
       function viewOrders(x) {
         orderParent.innerHTML = "";
         var id = x.srcElement.nextElementSibling.innerHTML;
+        console.log(id);
         parent3.innerHTML = `
             <h4>${(x.srcElement.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML) + " " + (x.srcElement.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML)}</h4>
             <h5>Address: ${(x.srcElement.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML)}</h5>
@@ -142,7 +171,7 @@
           var orderEntry = orderGet.filter((y) => y.orderID === id);
           var order = orderEntry[0].order;
           order.map((z) => {
-            console.log(x.srcElement.previousElementSibling);
+            // console.log(x.srcElement.previousElementSibling);
 
             orderParent.innerHTML += `
             <tr>
@@ -152,12 +181,81 @@
         <td>Rs ${parseInt(z.qty) * parseInt(z.price.substr(2))}</td>
       </tr>
             `;
-            const parent3 = document.getElementById("parent3");
-            
-            
+            const parent3 = document.getElementById("parent3");      
           });
         });
       }
+
+      function deleteOrders(x) {
+        var id = x.srcElement.previousElementSibling.previousElementSibling.innerHTML;
+        console.log(id)
+        remove(ref(database, 'orders/' + id));
+      }
+
+      function sendEmail(x) {
+        const orderRef =  ref(database, "orders/" + id);
+
+        //Fetching the details of approved order
+        var id = x.srcElement.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML;
+        onValue(orders, function (snapshot) {
+        let orderList = Object.values(snapshot.val());
+        var selectedOrder = orderList.filter((y) => y.orderID === id);
+        var arr = selectedOrder[0].order
+        var orderText = ``
+        var count = 0
+        var total = 0
+        arr.map((x)=>{
+          count += 1
+          total+= parseInt(x.price.slice(3))*x.qty
+          console.log(total)
+          orderText += `
+        ${count})Product:${x.name}
+           Price:${x.price}
+           Qty:${x.qty}
+          `
+        })
+
+        update(orderRef, {
+          orderStatus: "approved",
+        })
+        .then(() => {
+          console.log('Order status updated successfully');
+        })
+        .catch((error) => {
+          console.error('Error updating order status:', error);
+        });
+
+        // console.log(selectedOrder[0].orderStatus)
+        // if(selectedOrder[0].orderStatus=="approved") {
+        //   x.srcElement.innerHTML = "Approved"
+        // }
+        
+        // Sending Mail
+        var params = {
+          to_name: selectedOrder[0].firstName,
+          from_name: "Cakebakes",
+          user_email: selectedOrder[0].email,
+          message: `
+          Dear ${selectedOrder[0].firstName},
+          Thank you for your order! We’re pleased to confirm that we’ve received your order ${selectedOrder[0].orderID}
+          Here are the order details:
+          ${orderText}
+        
+          Total: Rs ${total}
+
+          You can expect an update shortly regarding shipping details. If you have any questions, feel free to reach out.
+
+          `
+        }
+        // emailjs.send("service_2rm66mx","template_nv3bve2",params).then(
+        //   function success() {
+        //     alert("Email sent successfully")
+        //   },
+        //   function failure() {
+        //     alert("An error occurred. Check for valid email and order.")
+        //   })
+        
+      })}
     </script>
   </head>
   <style>
@@ -190,6 +288,7 @@
 
     input[type="file"],
     input[type="text"],
+    input[type="button"],
     button[type="submit"] {
         width: 100%;
         padding: 10px;
@@ -199,7 +298,8 @@
         box-sizing: border-box;
     }
 
-    button[type="submit"] {
+    button[type="submit"],
+    input[type="button"] {
         background-color: #007bff;
         color: #fff;
         cursor: pointer;
@@ -246,14 +346,48 @@
     background-color: #e0e0e0; /* Change to desired hover background color */
 }
 
+.delete {
+    cursor: pointer;
+    background-color: #fd1919; /* Change to desired background color */
+    font-weight: bold;
+    border: 1px solid #000000;
+}
+
+.delete:hover {
+    background-color: #b70000; /* Change to desired hover background color */
+}
+
+.approve {
+  cursor: pointer;
+  background-color: #6aff6f; /* Change to desired background color */
+  font-weight: bold;
+  border: 1px solid #000000;
+}
+
+.approve:hover {
+    background-color: #00bf2d; /* Change to desired hover background color */
+}
+
+#button {
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+#button:hover {
+        background-color: #0056b3;
+    }
+
 
 
 </style>
 </head>
-
-
-
-
 
   <body>
     <div class="container">
@@ -264,7 +398,7 @@
     <input type="text" id="name" placeholder="Product name" />
     <input type="text" id="price" placeholder="Product price" />
     <input type="text" id="info" placeholder="Additional Info" />
-    <button type="submit" id="button">Submit</button>
+    <button type="button" id="button">Submit</button>
       </form>
     
       <h3>Order List</h5>
@@ -280,6 +414,8 @@
         <td>Order</td>
         <td>OrderID</td>
         <td>Order Notes</td>
+        <td>Delete</td>
+        <td>Approve</td>
       </tr>
     </table>
     <h3>Selected Order</h3>

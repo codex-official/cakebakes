@@ -6,7 +6,7 @@
     <meta name="keywords" content="Cake, unica, creative, html" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Cake | Template</title>
+    <title>CakeBakes by Khushi Shah</title>
 
     <!-- Google Font -->
     <link
@@ -32,55 +32,53 @@
   </head>
 
   <body>
+
+    
+
     <!-- Page Preloder -->
     <div id="preloder">
       <div class="loader"></div>
     </div>
 
+
     <!-- Offcanvas Menu Begin -->
     <div class="offcanvas-menu-overlay"></div>
     <div class="offcanvas-menu-wrapper">
-      <div class="offcanvas__cart">
-        <div class="offcanvas__cart__links">
-          <a href="#" class="search-switch"
-            ><img src="img/icon/search.png" alt=""
-          /></a>
-          <!-- <a href="#"><img src="img/icon/heart.png" alt="" /></a> -->
+        <div class="offcanvas__cart">
+            <div class="offcanvas__cart__links">
+                <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
+                <!-- <a href="#"><img src="img/icon/heart.png" alt=""></a> -->
+            </div>
+            <div class="offcanvas__cart__item">
+                <a href="shoping-cart.html"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
+                <div class="cart__price">Cart: <span>$Rs 0</span></div>
+            </div>
         </div>
-        <div class="offcanvas__cart__item">
-          <a href="shoping-cart.html"
-            ><img src="img/icon/cart.png" alt="" /> <span>0</span></a
-          >
-          <div class="cart__price">Cart: <span>Rs 0</span></div>
+        <div class="offcanvas__logo">
+            <a href="./index.html"><img src="img/cakebakeslogo.jpg" alt=""></a>
         </div>
-      </div>
-      <div class="offcanvas__logo">
-        <a href="./index.html"><img src="img/cakebakeslogo.jpg" alt="" /></a>
-      </div>
-      <div id="mobile-menu-wrap"></div>
-      <!-- <div class="offcanvas__option">
-        <ul>
-          <li>
-            USD <span class="arrow_carrot-down"></span>
+        <div id="mobile-menu-wrap"></div>
+        <!-- <div class="offcanvas__option">
             <ul>
-              <li>EUR</li>
-              <li>USD</li>
+                <li>USD <span class="arrow_carrot-down"></span>
+                    <ul>
+                        <li>EUR</li>
+                        <li>USD</li>
+                    </ul>
+                </li>
+                <li>ENG <span class="arrow_carrot-down"></span>
+                    <ul>
+                        <li>Spanish</li>
+                        <li>ENG</li>
+                    </ul>
+                </li>
+                <li><a href="#">Sign in</a> <span class="arrow_carrot-down"></span></li>
             </ul>
-          </li>
-          <li>
-            ENG <span class="arrow_carrot-down"></span>
-            <ul>
-              <li>Spanish</li>
-              <li>ENG</li>
-            </ul>
-          </li>
-          <li>
-            <a href="#">Sign in</a> <span class="arrow_carrot-down"></span>
-          </li>
-        </ul>
-      </div> -->
+        </div> -->
     </div>
     <!-- Offcanvas Menu End -->
+
+
 
     <!-- Header Section Begin -->
     <header class="header">
@@ -89,44 +87,22 @@
           <div class="row">
             <div class="col-lg-12">
               <div class="header__top__inner">
-                <!-- <div class="header__top__left">
-                  <ul>
-                    <li>
-                      USD <span class="arrow_carrot-down"></span>
-                      <ul>
-                        <li>EUR</li>
-                        <li>USD</li>
-                      </ul>
-                    </li>
-                    <li>
-                      ENG <span class="arrow_carrot-down"></span>
-                      <ul>
-                        <li>Spanish</li>
-                        <li>ENG</li>
-                      </ul>
-                    </li>
-                    <li>
-                      <a href="#">Sign in</a>
-                      <span class="arrow_carrot-down"></span>
-                    </li>
-                  </ul>
-                </div> -->
                 <div class="header__logo">
                   <a href="./index.html"
-                    ><img src="img/cakebakeslogo.jpg" alt=""
+                    ><img src="img/cakebakeslogo.jpg" alt="" id="logo123"
                   /></a>
+                  <h2 id="logo_title">Cakebakes</h2>
                 </div>
                 <div class="header__top__right">
                   <div class="header__top__right__links">
                     <a href="#" class="search-switch"
                       ><img src="img/icon/search.png" alt=""
                     /></a>
-                    <!-- <a href="#"><img src="img/icon/heart.png" alt="" /></a> -->
+                    <!-- <a href="#"><img src="img/icon/heart.png" alt=""/></a> -->
                   </div>
                   <div class="header__top__right__cart">
-                    <a href="./shoping-cart.html"
-                      ><img src="img/icon/cart.png" alt="" />
-                      <span id="cartCount">0</span></a
+                    <a href="./shoping-cart.html" 
+                      ><img src="img/icon/cart.png" alt="" /> <span>0</span></a
                     >
                     <div class="cart__price">Cart: <span>Rs 0</span></div>
                   </div>
@@ -142,12 +118,12 @@
           <div class="col-lg-12">
             <nav class="header__menu mobile-menu">
               <ul>
-                <li><a href="./index.html">Home</a></li>
+                <li class="active"><a href="./index.html">Home</a></li>
                 <li><a href="./about.html">About</a></li>
-                <li class="active"><a href="./shop.html">Shop</a></li>
+                <li><a href="./shop.html">Shop</a></li>
                 <li><a href="./shoping-cart.html">Cart</a></li>
-                <!-- <li>
-                  <a href="#">Pages</a>
+                <li>
+                  <!-- <a href="#">Pages</a>
                   <ul class="dropdown">
                     <li><a href="./shop-details.html">Shop Details</a></li>
                     <li><a href="./shoping-cart.html">Shoping Cart</a></li>
@@ -155,8 +131,8 @@
                     <li><a href="./wisslist.html">Wisslist</a></li>
                     <li><a href="./Class.html">Class</a></li>
                     <li><a href="./blog-details.html">Blog Details</a></li>
-                  </ul>
-                </li> -->
+                  </ul> -->
+                </li>
                 <!-- <li><a href="./blog.html">Blog</a></li> -->
                 <li><a href="./contact.html">Contact</a></li>
               </ul>
@@ -167,75 +143,152 @@
     </header>
     <!-- Header Section End -->
 
-    <!-- Breadcrumb Begin -->
-    <div class="breadcrumb-option">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-6 col-md-6 col-sm-6">
-            <div class="breadcrumb__text">
-              <h2>Shop</h2>
+    <!-- Hero Section Begin -->
+    <section class="hero">
+      <div class="hero__slider owl-carousel">
+        <div class="hero__item set-bg" data-setbg="img/hero/hero-1.jpg">
+          <div class="container">
+            <div class="row d-flex justify-content-center">
+              <div class="col-lg-8">
+                <div class="hero__text">
+                  <h2>Making your life sweeter one bite at a time!</h2>
+                  <a href="/cake-main/shop.html" class="primary-btn">Our cakes</a>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="col-lg-6 col-md-6 col-sm-6">
-            <div class="breadcrumb__links">
-              <a href="./index.html">Home</a>
-              <span>Shop</span>
+        </div>
+        <div class="hero__item set-bg" data-setbg="img/hero/hero-1.jpg">
+          <div class="container">
+            <div class="row d-flex justify-content-center">
+              <div class="col-lg-8">
+                <div class="hero__text">
+                  <h2>Making your life sweeter one bite at a time!</h2>
+                  <a href="/cake-main/shop.html" class="primary-btn">Our cakes</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Hero Section End -->
+
+    <!-- About Section Begin -->
+    <section class="about spad">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 col-md-6">
+            <div class="about__text">
+              <div class="section-title">
+                <span>About CakeBakes</span>
+                <h2>Fresh Home-made Cakes and bakes!</h2>
+              </div>
+              <p>
+                Cakebakes is a bootstrap desert and patiserrie serving venture
+                with taste inspired by the comfort of home and royal
+                deliciousness.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6">
+            <div class="about__bar">
+              <div class="about__bar__item">
+                <p>Cake design</p>
+                <div id="bar1" class="barfiller">
+                  <div class="tipWrap"><span class="tip"></span></div>
+                  <span class="fill" data-percentage="95"></span>
+                </div>
+              </div>
+              <div class="about__bar__item">
+                <p>Cake Class</p>
+                <div id="bar2" class="barfiller">
+                  <div class="tipWrap"><span class="tip"></span></div>
+                  <span class="fill" data-percentage="80"></span>
+                </div>
+              </div>
+              <div class="about__bar__item">
+                <p>Cake Recipes</p>
+                <div id="bar3" class="barfiller">
+                  <div class="tipWrap"><span class="tip"></span></div>
+                  <span class="fill" data-percentage="90"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- About Section End -->
+
+    
+
+    <!-- Categories Section Begin -->
+    <div class="categories">
+      <div class="container">
+        <div class="row">
+          <div class="categories__slider owl-carousel">
+            <div class="categories__item">
+              <div class="categories__item__icon">
+                <span class="flaticon-029-cupcake-3"></span>
+                <h5>Cupcake</h5>
+              </div>
+            </div>
+            <div class="categories__item">
+              <div class="categories__item__icon">
+                <span class="flaticon-034-chocolate-roll"></span>
+                <h5>Butter</h5>
+              </div>
+            </div>
+            <div class="categories__item">
+              <div class="categories__item__icon">
+                <span class="flaticon-005-pancake"></span>
+                <h5>Red Velvet</h5>
+              </div>
+            </div>
+            <div class="categories__item">
+              <div class="categories__item__icon">
+                <span class="flaticon-030-cupcake-2"></span>
+                <h5>Biscuit</h5>
+              </div>
+            </div>
+            <div class="categories__item">
+              <div class="categories__item__icon">
+                <span class="flaticon-006-macarons"></span>
+                <h5>Donut</h5>
+              </div>
+            </div>
+            <div class="categories__item">
+              <div class="categories__item__icon">
+                <span class="flaticon-006-macarons"></span>
+                <h5>Cupcake</h5>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- Breadcrumb End -->
+    <!-- Categories Section End -->
 
-    <!-- Shop Section Begin -->
-    <section class="shop spad">
+    <!-- Product Section Begin -->
+    <section class="product spad">
       <div class="container">
-        <div class="shop__option">
-          <div class="row">
-            <div class="col-lg-7 col-md-7">
-              <div class="shop__option__search">
-                <form action="#">
-                  <!-- <select>
-                    <option value="">Categories</option>
-                    <option value="">Red Velvet</option>
-                    <option value="">Cup Cake</option>
-                    <option value="">Biscuit</option>
-                  </select> -->
-                  <input type="text" placeholder="Search" id="searcher" />
-                  <button type="button" id="search-icon"><i class="fa fa-search"></i></button>
-                </form>
-              </div>
-            </div>
-            <div class="col-lg-5 col-md-5">
-              <div class="shop__option__right">
-                <select>
-                  <option value="">Default sorting</option>
-                  <option value="">A to Z</option>
-                  <option value="">1 - 8</option>
-                  <option value="">Name</option>
-                </select>
-                <!-- <a href="#"><i class="fa fa-list"></i></a>
-                <a href="#"><i class="fa fa-reorder"></i></a> -->
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row" id="parent">
-          <!-- <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 col-sm-6">
             <div class="product__item">
               <div
                 class="product__item__pic set-bg"
-                data-setbg="img/shop/product-1.jpg"
+                data-setbg="cakebakeimages/chocolatecake.png"
               >
                 <div class="product__label">
-                  <span>Cupcake</span>
+                  <span>1/2 KG</span>
                 </div>
               </div>
               <div class="product__item__text">
-                <h6><a href="#">Dozen Cupcakes</a></h6>
-                <div class="product__item__price">$32.00</div>
+                <h6><a href="#">Chocolate Cake</a></h6>
+                <div class="product__item__price">Rs 475</div>
                 <div class="cart_add">
-                  <a href="#" id="one" onclick="addtoCart(this)">Add to cart</a>
+                  <a href="#" onclick="addtoCart(this)" id="one">Add to cart</a>
                 </div>
               </div>
             </div>
@@ -244,27 +297,26 @@
             <div class="product__item">
               <div
                 class="product__item__pic set-bg"
-                data-setbg="img/shop/product-2.jpg"
+                data-setbg="cakebakeimages/Cupcakes.png"
               >
                 <div class="product__label">
-                  <span>Cupcake</span>
+                  <span>Box of 6</span>
                 </div>
               </div>
               <div class="product__item__text">
-                <h6><a href="#">Cookies and Cream</a></h6>
-                <div class="product__item__price">$30.00</div>
+                <h6><a href="#">Cupcakes</a></h6>
+                <div class="product__item__price">Rs 300</div>
                 <div class="cart_add">
-                  <a href="#" id="two" onclick="addtoCart(this)">Add to cart</a>
+                  <a href="#" onclick="addtoCart(this)" id="two">Add to cart</a>
                 </div>
               </div>
             </div>
-          </div> -->
-
-          <!-- <div class="col-lg-3 col-md-6 col-sm-6">
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
             <div class="product__item">
               <div
                 class="product__item__pic set-bg"
-                data-setbg="img/shop/product-3.jpg"
+                data-setbg="img/cakebakes/cake1.jpeg"
               >
                 <div class="product__label">
                   <span>Cupcake</span>
@@ -274,9 +326,7 @@
                 <h6><a href="#">Gluten Free Mini Dozen</a></h6>
                 <div class="product__item__price">$31.00</div>
                 <div class="cart_add">
-                  <a href="#" id="three" onclick="addtoCart(this)"
-                    >Add to cart</a
-                  >
+                  <a href="#" onclick="addtoCart(this)" id="three">Add to cart</a>
                 </div>
               </div>
             </div>
@@ -295,9 +345,7 @@
                 <h6><a href="#">Cookie Dough</a></h6>
                 <div class="product__item__price">$25.00</div>
                 <div class="cart_add">
-                  <a href="#" id="four" onclick="addtoCart(this)"
-                    >Add to cart</a
-                  >
+                  <a href="#" onclick="addtoCart(this)" id="four">Add to cart</a>
                 </div>
               </div>
             </div>
@@ -316,7 +364,7 @@
                 <h6><a href="#">Vanilla Salted Caramel</a></h6>
                 <div class="product__item__price">$05.00</div>
                 <div class="cart_add">
-                  <a href="#">Add to cart</a>
+                  <a href="#" onclick="addtoCart(this)" id="five">Add to cart</a>
                 </div>
               </div>
             </div>
@@ -335,7 +383,7 @@
                 <h6><a href="#">German Chocolate</a></h6>
                 <div class="product__item__price">$14.00</div>
                 <div class="cart_add">
-                  <a href="#">Add to cart</a>
+                  <a href="#" onclick="addtoCart(this)" id="six">Add to cart</a>
                 </div>
               </div>
             </div>
@@ -354,7 +402,7 @@
                 <h6><a href="#">Dulce De Leche</a></h6>
                 <div class="product__item__price">$32.00</div>
                 <div class="cart_add">
-                  <a href="#">Add to cart</a>
+                  <a href="#" onclick="addtoCart(this)" id="seven">Add to cart</a>
                 </div>
               </div>
             </div>
@@ -373,114 +421,376 @@
                 <h6><a href="#">Mississippi Mud</a></h6>
                 <div class="product__item__price">$08.00</div>
                 <div class="cart_add">
-                  <a href="#">Add to cart</a>
+                  <a href="#" onclick="addtoCart(this)" id="eight">Add to cart</a>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="product__item">
-              <div
-                class="product__item__pic set-bg"
-                data-setbg="img/shop/product-9.jpg"
-              >
-                <div class="product__label">
-                  <span>Cupcake</span>
-                </div>
-              </div>
-              <div class="product__item__text">
-                <h6><a href="#">VEGAN/GLUTEN FREE</a></h6>
-                <div class="product__item__price">$98.85</div>
-                <div class="cart_add">
-                  <a href="#">Add to cart</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="product__item">
-              <div
-                class="product__item__pic set-bg"
-                data-setbg="img/shop/product-10.jpg"
-              >
-                <div class="product__label">
-                  <span>Cupcake</span>
-                </div>
-              </div>
-              <div class="product__item__text">
-                <h6><a href="#">SWEET CELTICS</a></h6>
-                <div class="product__item__price">$5.77</div>
-                <div class="cart_add">
-                  <a href="#">Add to cart</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="product__item">
-              <div
-                class="product__item__pic set-bg"
-                data-setbg="img/shop/product-11.jpg"
-              >
-                <div class="product__label">
-                  <span>Cupcake</span>
-                </div>
-              </div>
-              <div class="product__item__text">
-                <h6><a href="#">SWEET AUTUMN LEAVES</a></h6>
-                <div class="product__item__price">$26.41</div>
-                <div class="cart_add">
-                  <a href="#">Add to cart</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="product__item">
-              <div
-                class="product__item__pic set-bg"
-                data-setbg="img/shop/product-12.jpg"
-              >
-                <div class="product__label">
-                  <span>Cupcake</span>
-                </div>
-              </div>
-              <div class="product__item__text">
-                <h6><a href="#">PALE YELLOW SWEET</a></h6>
-                <div class="product__item__price">$22.47</div>
-                <div class="cart_add">
-                  <a href="#">Add to cart</a>
-                </div>
-              </div>
-            </div>
-          </div> -->
-        </div>
-        <div class="shop__last__option">
-          <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6">
-              <div class="shop__pagination">
-                <a href="#">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#"><span class="arrow_carrot-right"></span></a>
-              </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6">
-              <div class="shop__last__text">
-                <p>Showing 1-9 of 10 results</p>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <!-- Shop Section End -->
+    <!-- Product Section End -->
+
+    <!-- Class Section Begin -->
+    <section class="class spad">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="class__form">
+              <div class="section-title">
+                <span>Classic cakes</span>
+                <h2>Made from our <br />own hands</h2>
+              </div>
+              <form action="#">
+                <input type="text" placeholder="Name" id="name" />
+                <input type="text" placeholder="Phone" id="phone" />
+                <input type="text" placeholder="Email" id="mail" />
+                <input
+                  type="text"
+                  placeholder="Type your requirements"
+                  id="requirements"
+                />
+                <button type="submit" class="site-btn" id="submit1">
+                  Send a Quote
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div
+          class="class__video set-bg"
+          data-setbg="cakebakeimages/birthdaycake.png"
+        >
+          <a
+            href="https://www.instagram.com/reel/C2JsdoHqIss/"
+            class="play-btn video-popup"
+            ><i class="fa fa-play"></i
+          ></a>
+        </div>
+      </div>
+    </section>
+    <!-- Class Section End -->
+
+    <!-- Team Section Begin -->
+    <section class="team spad">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-7 col-md-7 col-sm-7">
+            <div class="section-title">
+              <span>Our team</span>
+              <h2>Sweet Baker</h2>
+            </div>
+          </div>
+          <div class="col-lg-5 col-md-5 col-sm-5">
+            <div class="team__btn">
+              <a href="#" class="primary-btn">Join Us</a>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="team__item set-bg" data-setbg="img/khushishah.jpg">
+              <div class="team__item__text">
+                <h6>Khushi Shah</h6>
+                <span>Baker</span>
+                <div class="team__item__social">
+                  <a href="#"><i class="fa fa-facebook"></i></a>
+                  <a href="#"><i class="fa fa-twitter"></i></a>
+                  <a href="https://www.instagram.com/cakebakes.04/"><i class="fa fa-instagram"></i></a>
+                  <a href="https://wa.link/evho4h"><i class="fa fa-whatsapp"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="team__item set-bg" data-setbg="img/team/team-2.jpg">
+              <div class="team__item__text">
+                <h6>Randy Butler</h6>
+                <span>Decorater</span>
+                <div class="team__item__social">
+                  <a href="#"><i class="fa fa-facebook"></i></a>
+                  <a href="#"><i class="fa fa-twitter"></i></a>
+                  <a href="#"><i class="fa fa-instagram"></i></a>
+                  <a href="#"><i class="fa fa-youtube-play"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="team__item set-bg" data-setbg="img/team/team-3.jpg">
+              <div class="team__item__text">
+                <h6>Randy Butler</h6>
+                <span>Decorater</span>
+                <div class="team__item__social">
+                  <a href="#"><i class="fa fa-facebook"></i></a>
+                  <a href="#"><i class="fa fa-twitter"></i></a>
+                  <a href="#"><i class="fa fa-instagram"></i></a>
+                  <a href="#"><i class="fa fa-youtube-play"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="team__item set-bg" data-setbg="img/team/team-4.jpg">
+              <div class="team__item__text">
+                <h6>Randy Butler</h6>
+                <span>Decorater</span>
+                <div class="team__item__social">
+                  <a href="#"><i class="fa fa-facebook"></i></a>
+                  <a href="#"><i class="fa fa-twitter"></i></a>
+                  <a href="#"><i class="fa fa-instagram"></i></a>
+                  <a href="#"><i class="fa fa-youtube-play"></i></a>
+                </div>
+              </div>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </section>
+    <!-- Team Section End -->
+
+    <!-- Testimonial Section Begin -->
+    <section class="testimonial spad">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <div class="section-title">
+              <span>Testimonial</span>
+              <h2>Our client say</h2>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="testimonial__slider owl-carousel">
+            <div class="col-lg-6">
+              <div class="testimonial__item">
+                <div class="testimonial__author">
+                  <div class="testimonial__author__pic">
+                    <img src="img/usericon.jpg" alt="" />
+                  </div>
+                  <div class="testimonial__author__text">
+                    <h5>Nayomi</h5>
+                    <span>Mumbai</span>
+                  </div>
+                </div>
+                <div class="rating">
+                  <span class="icon_star"></span>
+                  <span class="icon_star"></span>
+                  <span class="icon_star"></span>
+                  <span class="icon_star"></span>
+                  <span class="icon_star-half_alt"></span>
+                </div>
+                <p>
+                  All the three flavours of the truffles were scrumptious! Everyone loved them. The packaging of the trufflies,
+                  cookies and chocolates was too pretty and just perfect!
+                </p>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="testimonial__item">
+                <div class="testimonial__author">
+                  <div class="testimonial__author__pic">
+                    <img src="img/usericon.jpg" alt="" />
+                  </div>
+                  <div class="testimonial__author__text">
+                    <h5>Vibhuti Yadav</h5>
+                    <span>Mumbai</span>
+                  </div>
+                </div>
+                <div class="rating">
+                  <span class="icon_star"></span>
+                  <span class="icon_star"></span>
+                  <span class="icon_star"></span>
+                  <span class="icon_star"></span>
+                  <span class="icon_star-half_alt"></span>
+                </div>
+                <p>
+                  It was amazing! Really looking forward to order some more. 
+                  Thank you so much for the lovely
+                  cupcakes!
+                </p>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="testimonial__item">
+                <div class="testimonial__author">
+                  <div class="testimonial__author__pic">
+                    <img src="img/usericon.jpg" alt="" />
+                  </div>
+                  <div class="testimonial__author__text">
+                    <h5>Mihir</h5>
+                    <span>Mumbai</span>
+                  </div>
+                </div>
+                <div class="rating">
+                  <span class="icon_star"></span>
+                  <span class="icon_star"></span>
+                  <span class="icon_star"></span>
+                  <span class="icon_star"></span>
+                  <span class="icon_star-half_alt"></span>
+                </div>
+                <p>
+                  The cake was superb! Amazing experience. Everyone loved the cake! Definitely ordering more.
+                </p>
+              </div>
+            </div>
+            <!-- <div class="col-lg-6">
+              <div class="testimonial__item">
+                <div class="testimonial__author">
+                  <div class="testimonial__author__pic">
+                    <img src="img/testimonial/ta-2.jpg" alt="" />
+                  </div>
+                  <div class="testimonial__author__text">
+                    <h5>Kerry D.Silva</h5>
+                    <span>New york</span>
+                  </div>
+                </div>
+                <div class="rating">
+                  <span class="icon_star"></span>
+                  <span class="icon_star"></span>
+                  <span class="icon_star"></span>
+                  <span class="icon_star"></span>
+                  <span class="icon_star-half_alt"></span>
+                </div>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                  viverra lacus vel facilisis.
+                </p>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="testimonial__item">
+                <div class="testimonial__author">
+                  <div class="testimonial__author__pic">
+                    <img src="img/testimonial/ta-1.jpg" alt="" />
+                  </div>
+                  <div class="testimonial__author__text">
+                    <h5>Ophelia Nunez</h5>
+                    <span>London</span>
+                  </div>
+                </div>
+                <div class="rating">
+                  <span class="icon_star"></span>
+                  <span class="icon_star"></span>
+                  <span class="icon_star"></span>
+                  <span class="icon_star"></span>
+                  <span class="icon_star-half_alt"></span>
+                </div>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                  viverra lacus vel facilisis.
+                </p>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="testimonial__item">
+                <div class="testimonial__author">
+                  <div class="testimonial__author__pic">
+                    <img src="img/testimonial/ta-2.jpg" alt="" />
+                  </div>
+                  <div class="testimonial__author__text">
+                    <h5>Kerry D.Silva</h5>
+                    <span>New york</span>
+                  </div>
+                </div>
+                <div class="rating">
+                  <span class="icon_star"></span>
+                  <span class="icon_star"></span>
+                  <span class="icon_star"></span>
+                  <span class="icon_star"></span>
+                  <span class="icon_star-half_alt"></span>
+                </div>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                  viverra lacus vel facilisis.
+                </p>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Testimonial Section End -->
+
+    <!-- Instagram Section Begin -->
+    <section class="instagram spad">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 p-0">
+            <div class="instagram__text">
+              <div class="section-title">
+                <span>Follow us on instagram</span>
+                <h2>Sweet moments are saved as memories.</h2>
+              </div>
+              <h5><i class="fa fa-instagram"></i> @cakebakes.04</h5>
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <div class="row">
+              <div class="col-lg-4 col-md-4 col-sm-4 col-6">
+                <div class="instagram__pic">
+                  <img src="cakebakeimages/Cupcakes.png" alt="" />
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-4 col-6">
+                <div class="instagram__pic middle__pic">
+                  <img src="img/cakebakes/cake5.jpeg" alt="" />
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-4 col-6">
+                <div class="instagram__pic">
+                  <img src="cakebakeimages/ferrerocake.png" alt="" />
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-4 col-6">
+                <div class="instagram__pic">
+                  <img src="cakebakeimages/nutella cake.png" alt="" />
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-4 col-6">
+                <div class="instagram__pic middle__pic">
+                  <img src="img/cakebakes/cake1.jpeg" alt="" />
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-4 col-6">
+                <div class="instagram__pic">
+                  <img src="img/cakebakes/cake2.jpeg" alt="" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Instagram Section End -->
+
+    <!-- Map Begin -->
+    <div class="map">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-7">
+            <div class="map__inner">
+              <h6>Ghatkopar</h6>
+              <ul>
+                <li>JALARAM NAGAR 1, 2ND FLOOR, FLAT NO 5 </li>
+                <li>GANDHI MARKET, M.G.ROAD, ABOVE SHILPA JEWELLERS</li>
+                <li>GHATKOPAR EAST,  MUMBAI - 40007</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Map End -->
 
     <!-- Floating Shop Cart begin -->
     <div class="floating-cart">
       <!-- <a aria-label="cart" data-uw-rm-empty-ctrl="" href="/shopping-cart" class="shopping-cart"> -->
         <!-- <span class="bi bi-cart3"></span></a><br><a href="/shopping-cart" class="shopping-cart"><span> -->
-          <a href="/cake-main/shoping-cart.html"><span class="header-shopping-cart-count"> View Cart</span></span></a></div>
+          <a href="/cake-main/shoping-cart.html"><span class="header-shopping-cart-count">View Cart</span></span></a></div>
     <!-- Floating Shop Cart End -->
 
     <!-- Footer Section Begin -->
@@ -489,7 +799,7 @@
         <div class="row">
           <div class="col-lg-4 col-md-6 col-sm-6">
             <div class="footer__widget">
-              <h5>WORKING HOURS</h5>
+              <h6>WORKING HOURS</h6>
               <ul>
                 <li>Monday - Friday: 08:00 am – 08:30 pm</li>
                 <li>Saturday: 10:00 am – 16:30 pm</li>
@@ -502,10 +812,6 @@
               <div class="footer__logo">
                 <a href="#"><img src="img/cakebakeslogo.jpg" alt="" /></a>
               </div>
-              <p>
-                Lorem ipsum dolor amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore dolore magna aliqua.
-              </p>
               <div class="footer__social">
                 <a href="#"><i class="fa fa-facebook"></i></a>
                 <a href="#"><i class="fa fa-twitter"></i></a>
@@ -516,10 +822,10 @@
           </div>
           <div class="col-lg-4 col-md-6 col-sm-6">
             <div class="footer__newslatter">
-              <h5>Subscribe</h5>
+              <h6>Subscribe</h6>
               <p>Get latest updates and offers.</p>
               <form action="#">
-                <input type="text" placeholder="Email" />
+                <input type="text" placeholder="Email" id="email" />
                 <button type="submit"><i class="fa fa-send-o"></i></button>
               </form>
             </div>
@@ -566,12 +872,13 @@
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/jquery.nicescroll.min.js"></script>
     <script src="js/main.js"></script>
-
-    <!-- <script src="js/shoppingcart.js"></script> -->
   </body>
-  <script src="js/adminpanel.js" type="module"></script>
-  <script defer src="js/search.js"></script>
+  <script src="js/firebase.js" type="module"></script>
   <script defer>
+
+    let cartCount = JSON.parse(localStorage.getItem("cartCount")) || 0;
+    
+
     function addtoCart(x) {
       let currentId = document.getElementById(x.id);
       let itemName =
@@ -581,6 +888,8 @@
       let imgdiv =
         currentId.parentElement.parentElement.previousElementSibling.style
           .backgroundImage;
+      let a = currentId;
+      // console.log(currentId)
 
       let productCur = {
         name: itemName,
@@ -588,11 +897,63 @@
         img: imgdiv,
         qty: 1,
       };
+
       let productList = JSON.parse(localStorage.getItem("productList")) || [];
-      productList.push(productCur);
-      localStorage.setItem("productList", JSON.stringify(productList));
-      console.log(productList[0].name);
+    
+
+      if((productList.find((x)=>x.name===productCur.name))!=undefined) {
+        a.style.opacity = "0.3"
+      }
+
+      if((productList.find((x)=>x.name===productCur.name))==undefined) {
+        productList.push(productCur);
+        localStorage.setItem("productList", JSON.stringify(productList));
+  
+      }
+          
+      a.style.transition = "0.3s"
+      a.style.borderBottomColor = "#11111"
+      a.style.opacity = "0.3"
+      a.innerHTML = "Added to Cart"
+
+      updateCartCount();
+      
     }
+
+    let buttons  = document.getElementsByClassName("cart_add");
+    let productList = JSON.parse(localStorage.getItem("productList")) || [];
+      buttons = [].slice.call(buttons);
+      buttons.map((x)=>{
+        x.addEventListener("mouseover",(x)=>{
+          let currentId = document.getElementById(x.srcElement.id);
+          let a = currentId
+          let itemName =
+          currentId.parentElement.previousElementSibling.previousElementSibling
+            .firstElementChild.innerHTML;
+          let itemPrice = currentId.parentElement.previousElementSibling.innerHTML;
+          let imgdiv =
+            currentId.parentElement.parentElement.previousElementSibling.style
+              .backgroundImage;
+
+          let productCur = {
+            name: itemName,
+            price: itemPrice,
+            img: imgdiv,
+            qty: 1,
+        };
+            
+          if((productList.find((x)=>x.name===productCur.name))!=undefined) {
+            a.style.transition = "0.3s"
+            a.style.borderBottomColor = "#11111"
+            a.style.opacity = "0.3"
+            a.innerHTML = "Added to Cart"
+            }
+
+          updateCartCount();
+      })
+
+      
+    })
 
     function switchPage() {
         $(".search-switch").on('click', function() {
@@ -610,5 +971,19 @@
         })
       }
       switchPage();
+
+    function updateCartCount() {
+        let productList = JSON.parse(localStorage.getItem("productList")) || [];
+        cartCount = productList.map((x)=>x.qty).reduce((x,y)=>x+y,0)
+        document.getElementsByClassName('header__top__right__cart')[0].firstElementChild.lastElementChild.innerHTML = cartCount
+        document.getElementsByClassName('offcanvas__cart__item')[0].firstElementChild.lastElementChild.innerHTML = cartCount
+        localStorage.setItem("cartCount", JSON.stringify(cartCount))
+        var arr  = [].slice.call(document.getElementsByClassName("cart__price"))
+        arr.map((x)=>{
+          (x.firstElementChild.innerHTML) = "Rs " + JSON.parse(localStorage.getItem("total"));
+        })
+      }
+    updateCartCount();
+
   </script>
 </html>

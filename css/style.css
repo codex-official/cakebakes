@@ -4073,3 +4073,42 @@ ol {
     display: none;
   }
 }
+
+/*Test*/
+
+@media only screen and (max-width: 767px) {
+  .floating-cart {
+    position: fixed;
+    z-index: 5000;
+    left: 30px;
+    padding: 10px 10px;
+    color: #fff;
+    background-color: #182ead;
+    text-align: center;
+    top: 88%;
+    border-right: 0px;
+    width: 25%;
+    border-radius: 50px;
+    &:hover,
+    &:focus {
+    background: #322bbd; }
+    a {
+    color: #fff;
+    font-size: 18px;
+    font-family: "Montserrat", sans-serif;
+    text-decoration: none;
+    transition: ease;
+    @include media-breakpoint-only(xs) {
+    font-size: 18px;
+    }
+    }
+    span {
+    width: 30px;
+    @include media-breakpoint-only(xs) {
+    width: 24px;
+    }
+    }
+    }
+}
+
+

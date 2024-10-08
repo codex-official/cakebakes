@@ -37,14 +37,17 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebas
     function display() {
 
       $("#searcher").val(JSON.parse(localStorage.getItem("searchQuery")) || "")
-      
+    
+
       onValue(products, function (snapshot) {
+        
         let chatsArray = Object.values(snapshot.val());
         for (let i=0;i<chatsArray.length;i++) {
         var list = Object.values(chatsArray[i])
         var link = 'https://firebasestorage.googleapis.com/v0/b/cakebakes-ef849.appspot.com/o/1711620494204-product-1.jpg?alt=media&token=d25f44ab-f4ba-42c3-9cfa-c9c1ea121768'
             
         shopList.push(list[2])
+        
 
         localStorage.setItem("shopList", JSON.stringify(shopList))
 

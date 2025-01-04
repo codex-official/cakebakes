@@ -100,8 +100,8 @@
               <ul>
                 <li><a href="./index.html">Home</a></li>
                 <li><a href="./about.html">About</a></li>
-                <li class="active"><a href="./shop.html">Shop</a></li>
-                <li><a href="./shoping-cart.html">Cart</a></li>
+                <li><a href="./shop.html">Shop</a></li>
+                <li class="active"><a href="./shoping-cart.html">Cart</a></li>
                 <!-- <li>
                   <a href="#">Pages</a>
                   <ul class="dropdown">
@@ -267,14 +267,16 @@
             <div class="cart__discount">
               <h6>Discount codes</h6>
               <form action="#">
-                <input type="text" placeholder="Coupon code" />
-                <button type="submit">Apply</button>
+                <input type="text" placeholder="Coupon code" id="query" />
+                <button id="submitDisc" type="button">Apply</button>
               </form>
+              <p id="errormess"></p>
             </div>
             <div class="cart__total">
               <h6>Cart total</h6>
               <ul>
                 <li>Subtotal <span>$ 169.50</span></li>
+                <li>Less: Discount <span>Rs 0</span></li>
                 <li>Total <span>$ 169.50</span></li>
               </ul>
               <a href="checkout.html" class="primary-btn"
@@ -293,11 +295,13 @@
         <div class="row">
           <div class="col-lg-4 col-md-6 col-sm-6">
             <div class="footer__widget">
-              <h6>WORKING HOURS</h6>
+              <h6>IMPORTANT LINKS</h6>
               <ul>
                 <li>Monday - Friday: 08:00 am – 08:30 pm</li>
-                <li>Saturday: 10:00 am – 16:30 pm</li>
-                <li>Sunday: 10:00 am – 16:30 pm</li>
+                <a href="/cake-main/terms.html"
+                  ><li>Terms and Conditions</li></a
+                >
+                <a href="/cake-main/privacy.html"><li>Privacy Policy</li></a>
               </ul>
             </div>
           </div>
@@ -312,7 +316,7 @@
               </p>
               <div class="footer__social">
                 <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
+
                 <a href="#"><i class="fa fa-instagram"></i></a>
                 <a href="#"><i class="fa fa-youtube-play"></i></a>
               </div>
@@ -384,5 +388,6 @@
     <script src="js/jquery.nicescroll.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/shoppingcart.js"></script>
+    <script src="js/discount.js" type="module"></script>
   </body>
 </html>

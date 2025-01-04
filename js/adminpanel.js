@@ -30,6 +30,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebas
 
     // let productList=[]
     // var productAttr;
+    let productList = JSON.parse(localStorage.getItem("productList")) || [];
     var shopList = []
     const parent= document.getElementById('parent');
     let cartCount = JSON.parse(localStorage.getItem("cartCount")) || 0;
@@ -116,7 +117,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebas
                 .backgroundImage;
           
             let productCur = { name: itemName, price: itemPrice, img: imgdiv, qty:1 };
-            let productList = JSON.parse(localStorage.getItem("productList")) || [];
+            
             console.log((productList.find((x)=>x.name===productCur.name)))
 
             if((productList.find((x)=>x.name===productCur.name))!=undefined) {
@@ -202,77 +203,33 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebas
           // </div>
           //   `
           //   })); 
-            
-            
-              
-                
-
-                // const div1 = document.createElement("div");
-                // div1.appendChild(document.createTextNode(''));
-                // div1.className = "col-lg-3 col-md-6 col-sm-6"
-
-                // const div2 = document.createElement("div");
-                // div2.appendChild(document.createTextNode(''));
-                // div2.className = "product__item"
-                // div1.appendChild(div2);
-
-                // const div3 = document.createElement("div");
-                // div3.appendChild(document.createTextNode(''));
-                // div3.className = "product__item__pic set-bg"
-                // var image = list[0];
-                // div3.style.backgroundImage = 'url('+image+')';
-                // div2.appendChild(div3);
-
-                // const div4 = document.createElement("div");
-                // div4.appendChild(document.createTextNode(""));
-                // div4.className = "product__label"
-                // div3.appendChild(div4);
-
-                // const span= document.createElement("span");
-                // span.appendChild(document.createTextNode(list[1]));
-                // div4.appendChild(span);
-
-                // const div5 = document.createElement("div");
-                // div5.appendChild(document.createTextNode(""));
-                // div5.className = "product__item__text"
-                // div2.appendChild(div5);
-
-                // const h6 = document.createElement("h6");
-                // const a1 = document.createElement('a');
-                // a1.appendChild(document.createTextNode(list[2]));
-                // h6.appendChild(a1);
-                // div5.appendChild(h6);
-                // h6.style.color = "#111111";
-                // h6.style.fontWeight = "600";
-                // h6.style.textTransform = "uppercase";
-
-                // const div6 = document.createElement("div");
-                // div6.appendChild(document.createTextNode(list[3]));
-                // div6.className = "product__item__price"
-                // div5.appendChild(div6);
-
-                // const div7 = document.createElement("div");
-                // div7.appendChild(document.createTextNode(""));
-                // div7.className = "cart_add"
-                // div5.appendChild(div7);
-
-                // const a = document.createElement("a");
-                // a.appendChild(document.createTextNode("Add to Cart"));
-                // a.style.cursor="pointer";
-                // a.addEventListener('click',() => {
-                //   addtoCart(this)
-                // })
-                // div7.appendChild(a);
-            
-
-
-                // parent.appendChild(div1);
-            
-            
-          
-          
           
         });
+
+        
       }
       display();
+      function addNewCategory() {
+        let parent = document.getElementById("mySelect");    
+        let prodCat = ref(database, "productCategory");
+        onValue(prodCat, function (snapshot) {
+          let chatsArray = Object.values(snapshot.val());
+          for (let i=0;i<chatsArray.length;i++) {
+          var list = Object.values(chatsArray[i])
+          parent.innerHTML+=
+            `
+            <option value="${list[1]}">${list[0]}</option>
+            `
+          
+        }
+        
+        })
+        
+        // const node = document.createElement("option");
+        // const textnode = document.createTextNode("Water");
+        // node.appendChild(textnode);
+        // parent.appendChild(node);
+        // console.log(parent.innerHTML);
+      }
+      addNewCategory();
 

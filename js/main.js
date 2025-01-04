@@ -9,6 +9,7 @@
 
 'use strict';
 
+
 (function ($) {
 
     /*------------------
@@ -58,22 +59,40 @@
         allowParentLinks: true
     });
 
+    //my changes
+    // Array of new image URLs
+    // const newImageUrls = [
+    //     "img/logo.png", // Replace with your new image URL
+    //     "img/cake-piece.png"  // Replace with your new image URL
+    // ];
+
+    // Update each hero item with new background images
+    // $(".hero__item").each(function (index) {
+    //     if (newImageUrls[index]) {
+    //         const newUrl = newImageUrls[index];
+    //         $(this).attr("data-setbg", newUrl); // Update data-setbg attribute
+    //         $(this).css("background-image", `url(${newUrl})`); // Apply background image
+    //     }
+    // });
+    
     /*-----------------------
         Hero Slider
     ------------------------*/
-    $(".hero__slider").owlCarousel({
-        loop: true,
-        margin: 0,
-        items: 1,
-        dots: false,
-        nav: true,
-        navText: ["<i class='fa fa-angle-left'><i/>", "<i class='fa fa-angle-right'><i/>"],
-        animateOut: 'fadeOut',
-        animateIn: 'fadeIn',
-        smartSpeed: 1200,
-        autoHeight: false,
-        autoplay: false
-    });
+    // $(".hero__slider").owlCarousel({
+    //     loop: true,
+    //     margin: 0,
+    //     items: 1,
+    //     dots: false,
+    //     nav: true,
+    //     navText: ["<i class='fa fa-angle-left'><i/>", "<i class='fa fa-angle-right'><i/>"],
+    //     animateOut: 'fadeOut',
+    //     animateIn: 'fadeIn',
+    //     smartSpeed: 1200,
+    //     autoHeight: false,
+    //     autoplay: false
+    // });
+
+    //my changes end
 
     /*--------------------------
         Categories Slider
@@ -111,23 +130,23 @@
     /*-----------------------------
         Testimonial Slider
     -------------------------------*/
-    $(".testimonial__slider").owlCarousel({
-        loop: true,
-        margin: 0,
-        items: 2,
-        dots: true,
-        smartSpeed: 1200,
-        autoHeight: false,
-        autoplay: true,
-        responsive: {
-            0: {
-                items: 1
-            },
-            768: {
-                items: 2
-            }
-        }
-    });
+    // $(".testimonial__slider").owlCarousel({
+    //     loop: true,
+    //     margin: 0,
+    //     items: 2,
+    //     dots: true,
+    //     smartSpeed: 1200,
+    //     autoHeight: false,
+    //     autoplay: true,
+    //     responsive: {
+    //         0: {
+    //             items: 1
+    //         },
+    //         768: {
+    //             items: 2
+    //         }
+    //     }
+    // });
 
     /*---------------------------------
         Related Products Slider
@@ -161,7 +180,9 @@
     /*--------------------------
         Select
     ----------------------------*/
-    $("select").niceSelect();
+
+    //Commented out this (change)
+    // $("select").niceSelect();
 
     /*------------------
 		Magnific

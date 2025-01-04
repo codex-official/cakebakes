@@ -75,16 +75,30 @@ function displayCart () {
           productList = productList.filter((x)=>x.name!==name);
           productList.push(search);
           localStorage.setItem("productList", JSON.stringify(productList))
+          resetDiscount();
           update();
           updateCartCount();
           TotalAmount();
           updateSubAmts(x);
           emptyCart();
+          
         }
 
-        else if(search.qty==0) {
-          removeItem(x);
-        }
+        if(search.qty==0) {
+          console.log(x.srcElement.parentElement.parentElement.parentElement.previousElementSibling.lastElementChild.firstElementChild.innerHTML)
+          
+          //Remove item
+          let selectedItem = x.srcElement.parentElement.parentElement.parentElement.previousElementSibling.lastElementChild.firstElementChild.innerHTML
+          productList = productList.filter((x)=>x.name !== selectedItem)
+          localStorage.setItem("productList", JSON.stringify(productList));
+          tr.remove();
+          resetDiscount();
+          TotalAmount();
+          update();
+          updateCartCount();
+          emptyCart();
+          }
+        
       }})
 
       // Increment to LocalStorage
@@ -102,10 +116,12 @@ function displayCart () {
         productList = productList.filter((x)=>x.name!==name);
         productList.push(search);
         localStorage.setItem("productList", JSON.stringify(productList))
+        resetDiscount();
         update();
         updateCartCount();
         TotalAmount();
         updateSubAmts(x)
+        
 
         })
 
@@ -132,10 +148,13 @@ function displayCart () {
         productList = productList.filter((x)=>x.name !== selectedItem)
         localStorage.setItem("productList", JSON.stringify(productList));
         tr.remove();
+        resetDiscount();
         TotalAmount();
         update();
         updateCartCount();
         emptyCart();
+        
+        
     }
 
     td4.appendChild(span);
@@ -172,26 +191,34 @@ updateCartCount();
 
 
 //Update Totals
+let discount = document.getElementsByClassName('cart__total')[0].lastElementChild.previousElementSibling.firstElementChild.nextElementSibling.firstElementChild;
+
+
 function TotalAmount() {
   let amountList = []
   let total = document.getElementsByClassName('cart__total')[0].lastElementChild.previousElementSibling.lastElementChild.firstElementChild;
   let subtotal = document.getElementsByClassName('cart__total')[0].lastElementChild.previousElementSibling.firstElementChild.firstElementChild;
-
+  let discount = document.getElementsByClassName('cart__total')[0].lastElementChild.previousElementSibling.firstElementChild.nextElementSibling.firstElementChild;
+  let discountAmt =  localStorage.getItem("discount");
   var arr  = [].slice.call(document.getElementsByClassName("cart__price"))
   arr.pop();
   arr.pop();
 
+  // Set total amount
   productList.map((x)=>{
     let amount = parseInt(x.qty) * parseInt(x.price.substr(2));
     amountList.push(amount)
-    let totalAmt = amountList.reduce((x,y)=>x+y,0)
-    total.innerHTML = "Rs " + totalAmt
-    console.log(totalAmt)
+    let grossAmt = amountList.reduce((x,y)=>x+y,0)
+    localStorage.setItem("grossAmt", grossAmt);
+    subtotal.innerHTML = "Rs " + grossAmt
+    total.innerHTML = "Rs " + (grossAmt - discountAmt)
     
-    subtotal.innerHTML = "Rs " + totalAmt
-    localStorage.setItem("total", totalAmt)
+    localStorage.setItem("total", grossAmt - discountAmt)
+    localStorage.setItem("grossAmt", grossAmt);
     
   })
+
+
   if (amountList[0]==undefined){
     console.log(amountList)
     total.innerHTML = "Rs 0" 
@@ -204,10 +231,9 @@ function TotalAmount() {
 
   
   arr.map((x)=>{
-    (x.firstElementChild.innerHTML) = "Rs " + JSON.parse(localStorage.getItem("total"));
-    console.log(x.firstElementChild.innerHTML)
+    // (x.firstElementChild.innerHTML) = "Rs " + JSON.parse(localStorage.getItem("total"));
+    
   })
-
   
 }
 
@@ -218,6 +244,7 @@ function updateSubAmts(x) {
   let qty = (x.srcElement.parentElement.querySelector(".qtyinput").value)
   let price = (x.srcElement.parentElement.parentElement.parentElement.previousElementSibling.lastElementChild.lastElementChild.innerHTML);
   subAmt.innerHTML = "Rs " + parseInt(qty) * parseInt(price.substr(2))
+
 }
 
 function emptyCart() {
@@ -243,5 +270,10 @@ function switchPage() {
       
     
   })
+}
+
+function resetDiscount() {
+  localStorage.setItem("discount", 0);
+  discount.innerHTML = "Rs 0";
 }
 switchPage();

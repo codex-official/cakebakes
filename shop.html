@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zxx">
   <head>
+    
     <meta charset="UTF-8" />
     <meta name="description" content="Cake Template" />
     <meta name="keywords" content="Cake, unica, creative, html" />
@@ -144,7 +145,9 @@
               <ul>
                 <li><a href="./index.html">Home</a></li>
                 <li><a href="./about.html">About</a></li>
-                <li class="active"><a href="./shop.html">Shop</a></li>
+                <li class="active">
+                  <a href="./shop.html" id="myParent">Shop</a>
+                </li>
                 <li><a href="./shoping-cart.html">Cart</a></li>
                 <!-- <li>
                   <a href="#">Pages</a>
@@ -195,12 +198,6 @@
             <div class="col-lg-7 col-md-7">
               <div class="shop__option__search">
                 <form action="#">
-                  <!-- <select>
-                    <option value="">Categories</option>
-                    <option value="">Red Velvet</option>
-                    <option value="">Cup Cake</option>
-                    <option value="">Biscuit</option>
-                  </select> -->
                   <input type="text" placeholder="Search" id="searcher" />
                   <button type="button" id="search-icon"><i class="fa fa-search"></i></button>
                 </form>
@@ -208,11 +205,12 @@
             </div>
             <div class="col-lg-5 col-md-5">
               <div class="shop__option__right">
-                <select>
-                  <option value="">Default sorting</option>
-                  <option value="">A to Z</option>
-                  <option value="">1 - 8</option>
-                  <option value="">Name</option>
+                <select id="mySelect" onchange="searchCategory()">
+                  <option value="">Choose a Category</option>
+                  <option value="">All Products</option>
+                  <!-- <option value="cake">Cakes</option>
+                  <option value="cupcake">Cupcakes</option>
+                  <option value="cookies">Cookies</option> -->
                 </select>
                 <!-- <a href="#"><i class="fa fa-list"></i></a>
                 <a href="#"><i class="fa fa-reorder"></i></a> -->
@@ -221,239 +219,7 @@
           </div>
         </div>
         <div class="row" id="parent">
-          <!-- <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="product__item">
-              <div
-                class="product__item__pic set-bg"
-                data-setbg="img/shop/product-1.jpg"
-              >
-                <div class="product__label">
-                  <span>Cupcake</span>
-                </div>
-              </div>
-              <div class="product__item__text">
-                <h6><a href="#">Dozen Cupcakes</a></h6>
-                <div class="product__item__price">$32.00</div>
-                <div class="cart_add">
-                  <a href="#" id="one" onclick="addtoCart(this)">Add to cart</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="product__item">
-              <div
-                class="product__item__pic set-bg"
-                data-setbg="img/shop/product-2.jpg"
-              >
-                <div class="product__label">
-                  <span>Cupcake</span>
-                </div>
-              </div>
-              <div class="product__item__text">
-                <h6><a href="#">Cookies and Cream</a></h6>
-                <div class="product__item__price">$30.00</div>
-                <div class="cart_add">
-                  <a href="#" id="two" onclick="addtoCart(this)">Add to cart</a>
-                </div>
-              </div>
-            </div>
-          </div> -->
-
-          <!-- <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="product__item">
-              <div
-                class="product__item__pic set-bg"
-                data-setbg="img/shop/product-3.jpg"
-              >
-                <div class="product__label">
-                  <span>Cupcake</span>
-                </div>
-              </div>
-              <div class="product__item__text">
-                <h6><a href="#">Gluten Free Mini Dozen</a></h6>
-                <div class="product__item__price">$31.00</div>
-                <div class="cart_add">
-                  <a href="#" id="three" onclick="addtoCart(this)"
-                    >Add to cart</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="product__item">
-              <div
-                class="product__item__pic set-bg"
-                data-setbg="img/shop/product-4.jpg"
-              >
-                <div class="product__label">
-                  <span>Cupcake</span>
-                </div>
-              </div>
-              <div class="product__item__text">
-                <h6><a href="#">Cookie Dough</a></h6>
-                <div class="product__item__price">$25.00</div>
-                <div class="cart_add">
-                  <a href="#" id="four" onclick="addtoCart(this)"
-                    >Add to cart</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="product__item">
-              <div
-                class="product__item__pic set-bg"
-                data-setbg="img/shop/product-5.jpg"
-              >
-                <div class="product__label">
-                  <span>Cupcake</span>
-                </div>
-              </div>
-              <div class="product__item__text">
-                <h6><a href="#">Vanilla Salted Caramel</a></h6>
-                <div class="product__item__price">$05.00</div>
-                <div class="cart_add">
-                  <a href="#">Add to cart</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="product__item">
-              <div
-                class="product__item__pic set-bg"
-                data-setbg="img/shop/product-6.jpg"
-              >
-                <div class="product__label">
-                  <span>Cupcake</span>
-                </div>
-              </div>
-              <div class="product__item__text">
-                <h6><a href="#">German Chocolate</a></h6>
-                <div class="product__item__price">$14.00</div>
-                <div class="cart_add">
-                  <a href="#">Add to cart</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="product__item">
-              <div
-                class="product__item__pic set-bg"
-                data-setbg="img/shop/product-7.jpg"
-              >
-                <div class="product__label">
-                  <span>Cupcake</span>
-                </div>
-              </div>
-              <div class="product__item__text">
-                <h6><a href="#">Dulce De Leche</a></h6>
-                <div class="product__item__price">$32.00</div>
-                <div class="cart_add">
-                  <a href="#">Add to cart</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="product__item">
-              <div
-                class="product__item__pic set-bg"
-                data-setbg="img/shop/product-8.jpg"
-              >
-                <div class="product__label">
-                  <span>Cupcake</span>
-                </div>
-              </div>
-              <div class="product__item__text">
-                <h6><a href="#">Mississippi Mud</a></h6>
-                <div class="product__item__price">$08.00</div>
-                <div class="cart_add">
-                  <a href="#">Add to cart</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="product__item">
-              <div
-                class="product__item__pic set-bg"
-                data-setbg="img/shop/product-9.jpg"
-              >
-                <div class="product__label">
-                  <span>Cupcake</span>
-                </div>
-              </div>
-              <div class="product__item__text">
-                <h6><a href="#">VEGAN/GLUTEN FREE</a></h6>
-                <div class="product__item__price">$98.85</div>
-                <div class="cart_add">
-                  <a href="#">Add to cart</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="product__item">
-              <div
-                class="product__item__pic set-bg"
-                data-setbg="img/shop/product-10.jpg"
-              >
-                <div class="product__label">
-                  <span>Cupcake</span>
-                </div>
-              </div>
-              <div class="product__item__text">
-                <h6><a href="#">SWEET CELTICS</a></h6>
-                <div class="product__item__price">$5.77</div>
-                <div class="cart_add">
-                  <a href="#">Add to cart</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="product__item">
-              <div
-                class="product__item__pic set-bg"
-                data-setbg="img/shop/product-11.jpg"
-              >
-                <div class="product__label">
-                  <span>Cupcake</span>
-                </div>
-              </div>
-              <div class="product__item__text">
-                <h6><a href="#">SWEET AUTUMN LEAVES</a></h6>
-                <div class="product__item__price">$26.41</div>
-                <div class="cart_add">
-                  <a href="#">Add to cart</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="product__item">
-              <div
-                class="product__item__pic set-bg"
-                data-setbg="img/shop/product-12.jpg"
-              >
-                <div class="product__label">
-                  <span>Cupcake</span>
-                </div>
-              </div>
-              <div class="product__item__text">
-                <h6><a href="#">PALE YELLOW SWEET</a></h6>
-                <div class="product__item__price">$22.47</div>
-                <div class="cart_add">
-                  <a href="#">Add to cart</a>
-                </div>
-              </div>
-            </div>
-          </div> -->
+          
         </div>
         <div class="shop__last__option">
           <div class="row">
@@ -476,17 +242,20 @@
     </section>
     <!-- Shop Section End -->
 
+    <!-- Floating View Cart Button -->
+    <a href="shoping-cart.html"><button class="floating-cart-button" onclick="viewCart()">View Cart</button></a>
+
     <!-- Footer Section Begin -->
     <footer class="footer set-bg" data-setbg="img/footer-bg.jpg">
       <div class="container">
         <div class="row">
           <div class="col-lg-4 col-md-6 col-sm-6">
             <div class="footer__widget">
-              <h5>WORKING HOURS</h5>
+              <h6>IMPORTANT LINKS</h6>
               <ul>
                 <li>Monday - Friday: 08:00 am – 08:30 pm</li>
-                <li>Saturday: 10:00 am – 16:30 pm</li>
-                <li>Sunday: 10:00 am – 16:30 pm</li>
+                <a href="/cake-main/terms.html"><li>Terms and Conditions</li></a>
+                <a href="/cake-main/privacy.html"><li>Privacy Policy</li></a>
               </ul>
             </div>
           </div>
@@ -500,8 +269,7 @@
                 eiusmod tempor incididunt ut labore dolore magna aliqua.
               </p>
               <div class="footer__social">
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-facebook"></i></a>    
                 <a href="#"><i class="fa fa-instagram"></i></a>
                 <a href="#"><i class="fa fa-youtube-play"></i></a>
               </div>
@@ -550,6 +318,7 @@
     <!-- Search End -->
 
     <!-- Js Plugins -->
+    <script src="js/adminpanel.js" type="module"></script>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.nice-select.min.js"></script>
@@ -557,12 +326,10 @@
     <script src="js/jquery.magnific-popup.min.js"></script>
     <script src="js/jquery.slicknav.js"></script>
     <script src="js/owl.carousel.min.js"></script>
-    <script src="js/jquery.nicescroll.min.js"></script>
-    <script src="js/main.js"></script>
-
-    <!-- <script src="js/shoppingcart.js"></script> -->
+    <script src="js/jquery.nicescroll.min.js"></script>   
+    <script src="js/main.js" defer></script>
   </body>
-  <script src="js/adminpanel.js" type="module"></script>
+  
   <script defer src="js/search.js"></script>
   <script defer>
     function addtoCart(x) {
@@ -585,23 +352,23 @@
       productList.push(productCur);
       localStorage.setItem("productList", JSON.stringify(productList));
       console.log(productList[0].name);
+      localStorage.setItem("netAmt", 0)
     }
 
     function switchPage() {
-        $(".search-switch").on('click', function() {
-          // console.log($("#search-input").val())
-          
+        $(".search-switch").on('click', function() {         
           $("#search-input").on("blur", function() {
             let query = ($("#search-input").val())
             localStorage.setItem("searchQuery", JSON.stringify(query));
-            window.location.href = "./shop.html"
-            // $("#searcher").val(query)
-            
-          }) 
-            
-          
+            window.location.href = "./shop.html"         
+          })        
         })
-      }
-      switchPage();
+    }
+
+
+
+    switchPage();
+
+    
   </script>
 </html>

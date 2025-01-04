@@ -63,6 +63,11 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebas
         let localID = localStorage.setItem("orderID", uniqueId())
         if ((firstName.value=="")||(lastName.value=="")||(address1.value=="")||(lastName.value=="")||(town.value=="")||(state.value=="")||(postcode.value=="")||(phone.value=="")||(email.value=="")) {
             alert("Invalid Credentials! Please fill all the necessary details")
+            console.log(basket.length==0)
+        }
+        else if (basket.length==0) {
+            console.log("not working")
+            alert("No products selected. Please add products to the cart.")
         }
         else {
             set(ref(database, 'orders/' + uniqueId()), {
@@ -75,8 +80,10 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebas
                 orderNotes:orderNotes.value,
                 order:basket,
                 orderID: uniqueId(),
-                date: currentDate
-    
+                date: currentDate,
+                subtotal: subtotal,
+                discount: discount,
+                total: total
             });
             window.location.href = "./success.html";
         }
@@ -89,6 +96,9 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebas
 var parent = document.getElementsByClassName("checkout__total__products")
 var totalParent = document.getElementsByClassName("checkout__total__all")
 var count = 0
+var subtotal = JSON.parse(localStorage.getItem("grossAmt"))
+var discount = JSON.parse(localStorage.getItem("discount"))
+var discName = localStorage.getItem("discName")
 var total = JSON.parse(localStorage.getItem("total"))
 basket.map((x)=>{
     count += 1
@@ -100,8 +110,14 @@ basket.map((x)=>{
     `
 })
 
-totalParent[0].innerHTML = `<li>Subtotal <span>Rs ${total}</span></li>
-<li>Total <span>Rs ${total}</span></li>`
+totalParent[0].innerHTML = `
+<li>Subtotal <span>Rs ${subtotal}</span></li>
+<li>
+(-)Discount <span>Rs ${discount} </span>
+<p>${discName}</p>
+    </li>
+<li>Total <span>Rs ${total}</span></li>
+`
 
 
 if(basket[0] == undefined) {

@@ -890,7 +890,7 @@
     
 
     function addtoCart(x) {
-      console.log("${{secrets.API_KEY}}")
+      console.log(${{secrets.API_KEY}})
       let currentId = document.getElementById(x.id);
       let itemName =
         currentId.parentElement.previousElementSibling.previousElementSibling
